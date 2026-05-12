@@ -3,434 +3,958 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zentro | Premium Web Studio</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<title>Zentro — Web Design Studio, Cheshire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --glass: rgba(255,255,255,0.055);
+    --glass-border: rgba(167,139,250,0.2);
+    --glass-shine: rgba(196,181,253,0.18);
+    --accent: #C4B5FD;
+    --accent2: #A78BFA;
+    --accent3: #7C3AED;
+    --text: #EDE9FE;
+    --muted: rgba(221,214,254,0.58);
+    --dark: #07050F;
+  }
 
-/* =========================
-   BASE
-========================= */
-body {
-  margin: 0;
-  font-family: 'Sora', sans-serif;
-  color: white;
-  background: radial-gradient(circle at top, #0b1220, #020617);
-  overflow-x: hidden;
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ambient depth */
-body::before,
-body::after {
-  content: "";
-  position: fixed;
-  width: 800px;
-  height: 800px;
-  filter: blur(160px);
-  opacity: 0.22;
-  z-index: 0;
-}
+  html { scroll-behavior: smooth; }
 
-body::before { background: #3b82f6; left: -350px; top: 20%; }
-body::after { background: #a855f7; right: -350px; bottom: 10%; }
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: auto;
+  }
 
-/* =========================
-   SPLASH
-========================= */
-.splash {
-  position: fixed;
-  inset: 0;
-  background: #020617;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  animation: fadeOut 1s ease forwards;
-  animation-delay: 2s;
-}
+  /* ─── ANIMATED BACKGROUND ─── */
+  #bg-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
 
-.logo {
-  width: 90px;
-  height: 90px;
-  border-radius: 22px;
-  background: linear-gradient(135deg,#3b82f6,#a855f7,#22d3ee);
-  box-shadow: 0 0 60px rgba(59,130,246,0.45);
-  animation: pulse 1.6s ease-in-out infinite;
-}
+  /* ─── LAYOUT ─── */
+  .wrapper { position: relative; z-index: 1; }
 
-@keyframes pulse {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.12); }
-}
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
+    z-index: 100;
+    width: calc(100% - 48px); max-width: 1200px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 28px;
+    background: rgba(10,10,20,0.4);
+    backdrop-filter: blur(24px) saturate(1.5);
+    -webkit-backdrop-filter: blur(24px) saturate(1.5);
+    border: 1px solid var(--glass-border);
+    border-radius: 100px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 var(--glass-shine);
+    animation: fadeSlideDown 1s ease both;
+  }
+  .nav-logo {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-family: 'Outfit', sans-serif; font-size: 0.82rem; font-weight: 600;
+    color: var(--muted); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    font-family: 'Outfit', sans-serif; font-size: 0.82rem; font-weight: 700;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    background: linear-gradient(135deg, var(--accent2), var(--accent3));
+    color: #EDE9FE; padding: 9px 22px; border-radius: 100px;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 24px rgba(124,58,237,0.35);
+  }
+  .nav-cta:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(167,139,250,0.55); }
 
-@keyframes fadeOut {
-  to { opacity: 0; visibility: hidden; }
-}
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 120px 24px 80px;
+    position: relative;
+  }
+  .hero-eyebrow {
+    font-family: 'Outfit', sans-serif; font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 10px;
+    animation: fadeSlideUp 1s 0.3s ease both;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; display: block; width: 32px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent));
+  }
+  .hero-eyebrow::after { background: linear-gradient(90deg, var(--accent), transparent); }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8vw, 8rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 32px;
+    animation: fadeSlideUp 1s 0.5s ease both;
+  }
+  .hero-title .line2 {
+    font-style: italic; font-weight: 400;
+    background: linear-gradient(135deg, var(--accent2), var(--accent3));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-title .line3 {
+    display: block; font-size: 0.55em; font-weight: 400;
+    color: var(--muted); letter-spacing: 0.05em; margin-top: 12px;
+  }
+  .hero-sub {
+    font-size: clamp(0.95rem, 2vw, 1.15rem); color: var(--muted);
+    max-width: 540px; line-height: 1.75;
+    animation: fadeSlideUp 1s 0.7s ease both;
+    margin-bottom: 52px;
+  }
+  .hero-btns {
+    display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+    animation: fadeSlideUp 1s 0.9s ease both;
+  }
+  .btn-primary {
+    font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.9rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    background: linear-gradient(135deg, var(--accent2), var(--accent3));
+    color: #EDE9FE; padding: 16px 36px; border-radius: 100px;
+    text-decoration: none; cursor: pointer;
+    box-shadow: 0 0 40px rgba(124,58,237,0.35);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .btn-primary:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 8px 50px rgba(167,139,250,0.55); }
+  .btn-ghost {
+    font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.9rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    border: 1px solid var(--glass-border); color: var(--text);
+    padding: 16px 36px; border-radius: 100px; text-decoration: none; cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: border-color 0.3s, color 0.3s, background 0.3s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: rgba(167,139,250,0.07); }
+  .hero-scroll {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    animation: fadeSlideUp 1s 1.2s ease both;
+  }
+  .scroll-text { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .scroll-line {
+    width: 1px; height: 48px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  .glass-section {
+    margin: 40px auto;
+    max-width: 1200px;
+    padding: 0 24px;
+    opacity: 0;
+    transform: translateY(60px) scale(0.97);
+    transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+  }
+  .glass-section.visible {
+    opacity: 1; transform: translateY(0) scale(1);
+  }
+  .glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(32px) saturate(1.8);
+    -webkit-backdrop-filter: blur(32px) saturate(1.8);
+    border: 1px solid var(--glass-border);
+    border-radius: 28px;
+    padding: 72px 64px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.5), inset 0 1px 0 var(--glass-shine);
+  }
+  .glass-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--glass-shine), transparent);
+  }
 
-/* =========================
-   MAIN ENTRY
-========================= */
-main {
-  opacity: 0;
-  transform: translateY(15px);
-  animation: pageIn 1s ease forwards;
-  animation-delay: 2.1s;
-}
+  /* ─── SECTION LABELS ─── */
+  .section-label {
+    font-family: 'Outfit', sans-serif; font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 20px; display: block;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 700; line-height: 1.1;
+    letter-spacing: -0.02em; margin-bottom: 24px;
+  }
+  .section-title em { font-style: italic; color: var(--accent2); }
+  .section-body {
+    font-size: 1.05rem; color: var(--muted); line-height: 1.8;
+    max-width: 600px;
+  }
 
-@keyframes pageIn {
-  to { opacity: 1; transform: translateY(0); }
-}
+  /* ─── ABOUT ─── */
+  #about .glass-card { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
+  .stat-pill {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .stat-pill:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 900;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    display: block; line-height: 1;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.04em; margin-top: 6px; display: block; }
+  .about-visual {
+    position: relative; height: 360px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .about-orb {
+    width: 240px; height: 240px; border-radius: 50%;
+    background: conic-gradient(from 0deg, var(--accent), var(--accent2), var(--accent3), var(--accent));
+    filter: blur(3px);
+    animation: orbSpin 12s linear infinite;
+    opacity: 0.85;
+  }
+  .about-orb-inner {
+    position: absolute;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(10,10,20,0.95) 60%, transparent);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 4px;
+  }
+  .orb-text {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+    font-style: italic; color: var(--text); text-align: center;
+  }
+  .orb-sub { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
 
-/* =========================
-   HERO
-========================= */
-header {
-  text-align: center;
-  padding: 140px 20px 60px;
-  position: relative;
-  z-index: 2;
-}
+  /* ─── SERVICES ─── */
+  #services .section-header { margin-bottom: 48px; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .service-card {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 22px;
+    padding: 40px 32px;
+    position: relative; overflow: hidden;
+    cursor: default;
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), border-color 0.4s, box-shadow 0.4s;
+    box-shadow: inset 0 1px 0 var(--glass-shine);
+  }
+  .service-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(167,139,250,0.5);
+    box-shadow: 0 24px 60px rgba(167,139,250,0.15), inset 0 1px 0 var(--glass-shine);
+  }
+  .service-card::after {
+    content: '';
+    position: absolute; bottom: -40px; right: -40px;
+    width: 120px; height: 120px; border-radius: 50%;
+    background: radial-gradient(circle, var(--accent2) 0%, transparent 70%);
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .service-card:hover::after { opacity: 0.15; }
+  .service-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: linear-gradient(135deg, rgba(167,139,250,0.15), rgba(124,58,237,0.1));
+    border: 1px solid rgba(167,139,250,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 24px;
+  }
+  .service-name {
+    font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.05rem;
+    margin-bottom: 12px; color: var(--text); letter-spacing: -0.01em;
+  }
+  .service-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.72; }
+  .service-tag {
+    display: inline-block; margin-top: 20px;
+    font-family: 'Outfit', sans-serif; font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); padding: 5px 12px;
+    background: rgba(167,139,250,0.1); border-radius: 100px;
+    border: 1px solid rgba(167,139,250,0.25);
+  }
 
-h1 {
-  font-size: 110px;
-  margin: 0;
-  letter-spacing: -5px;
-  background: linear-gradient(90deg,#60a5fa,#a78bfa,#22d3ee);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+  /* ─── PROCESS ─── */
+  #process .glass-card { padding-bottom: 80px; }
+  .process-steps { margin-top: 56px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+  .process-steps::before {
+    content: '';
+    position: absolute; top: 32px; left: 10%; right: 10%;
+    height: 1px; background: linear-gradient(90deg, transparent, var(--glass-border), var(--glass-border), transparent);
+  }
+  .step {
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    padding: 0 16px; position: relative;
+  }
+  .step-num {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 900;
+    margin-bottom: 24px;
+    position: relative; z-index: 1;
+    box-shadow: 0 0 0 8px var(--dark), inset 0 1px 0 var(--glass-shine);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .step:hover .step-num {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 8px var(--dark), 0 0 30px rgba(167,139,250,0.35), inset 0 1px 0 var(--glass-shine);
+  }
+  .step-title { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 10px; }
+  .step-body { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
 
-.sub {
-  font-size: 22px;
-  color: #cbd5e1;
-  margin-top: 14px;
-  line-height: 1.7;
-}
+  /* ─── WHY ─── */
+  #why .glass-card { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+  .why-list { margin-top: 40px; display: flex; flex-direction: column; gap: 16px; }
+  .why-item {
+    display: flex; gap: 18px; align-items: flex-start;
+    padding: 20px 24px; border-radius: 16px;
+    border: 1px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+    cursor: default;
+  }
+  .why-item:hover { background: rgba(255,255,255,0.04); border-color: var(--glass-border); }
+  .why-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+  .why-item-title { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; }
+  .why-item-body { font-size: 0.87rem; color: var(--muted); line-height: 1.6; }
+  .why-visual {
+    display: flex; flex-direction: column; gap: 16px; padding-top: 20px;
+  }
+  .tech-badge {
+    padding: 20px 28px;
+    background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: 16px;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .tech-badge:hover { transform: translateX(6px); border-color: rgba(167,139,250,0.4); }
+  .tech-badge-name { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.9rem; }
+  .tech-badge-desc { font-size: 0.8rem; color: var(--muted); }
+  .tech-badge-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent); flex-shrink: 0;
+    box-shadow: 0 0 12px var(--accent);
+    animation: dotPulse 2s ease-in-out infinite;
+  }
 
-/* credibility strip */
-.meta {
-  margin-top: 18px;
-  font-size: 14px;
-  color: #94a3b8;
-}
+  /* ─── TESTIMONIALS ─── */
+  #testimonials .section-header { text-align: center; margin-bottom: 56px; }
+  #testimonials .section-header .section-body { margin: 0 auto; }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .testi-card {
+    background: var(--glass);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border); border-radius: 22px;
+    padding: 36px 32px;
+    box-shadow: inset 0 1px 0 var(--glass-shine);
+    transition: transform 0.4s, border-color 0.4s;
+  }
+  .testi-card:hover { transform: translateY(-6px); border-color: rgba(167,139,250,0.4); }
+  .testi-stars { color: var(--accent); font-size: 0.85rem; margin-bottom: 16px; letter-spacing: 2px; }
+  .testi-quote {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem;
+    line-height: 1.75; color: var(--text); margin-bottom: 24px;
+  }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent2), var(--accent3));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 0.85rem; color: #EDE9FE;
+  }
+  .testi-name { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.9rem; }
+  .testi-role { font-size: 0.78rem; color: var(--muted); }
 
-/* =========================
-   APPLE-STYLE STORY SECTIONS
-========================= */
-section {
-  max-width: 1100px;
-  margin: auto;
-  padding: 120px 20px;
-  position: relative;
-  z-index: 2;
+  /* ─── PRICING ─── */
+  #pricing .section-header { text-align: center; margin-bottom: 56px; }
+  #pricing .section-header .section-body { margin: 0 auto; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .pricing-card {
+    background: var(--glass);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border); border-radius: 24px;
+    padding: 48px 36px;
+    position: relative; overflow: hidden;
+    box-shadow: inset 0 1px 0 var(--glass-shine);
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  }
+  .pricing-card:hover { transform: translateY(-8px); }
+  .pricing-card.featured {
+    border-color: rgba(167,139,250,0.4);
+    box-shadow: 0 0 60px rgba(124,58,237,0.18), inset 0 1px 0 rgba(196,181,253,0.2);
+  }
+  .pricing-badge {
+    position: absolute; top: 20px; right: 20px;
+    font-family: 'Outfit', sans-serif; font-size: 0.68rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: linear-gradient(135deg, var(--accent2), var(--accent3));
+    color: #EDE9FE; padding: 5px 14px; border-radius: 100px;
+  }
+  .pricing-tier { font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+  .pricing-price {
+    font-family: 'Cormorant Garamond', serif; font-weight: 900; font-size: 3rem;
+    line-height: 1; margin-bottom: 8px;
+  }
+  .pricing-price span { font-size: 1.2rem; font-weight: 400; vertical-align: super; }
+  .pricing-note { font-size: 0.8rem; color: var(--muted); margin-bottom: 32px; }
+  .pricing-divider { height: 1px; background: var(--glass-border); margin: 28px 0; }
+  .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+  .pricing-features li { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; color: var(--muted); }
+  .pricing-features li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+  .btn-pricing {
+    display: block; text-align: center;
+    font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.85rem;
+    letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
+    padding: 14px; border-radius: 100px; cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .btn-pricing-fill {
+    background: linear-gradient(135deg, var(--accent2), var(--accent3));
+    color: #EDE9FE; box-shadow: 0 0 24px rgba(124,58,237,0.35);
+  }
+  .btn-pricing-fill:hover { transform: scale(1.04); box-shadow: 0 0 40px rgba(167,139,250,0.5); }
+  .btn-pricing-outline {
+    border: 1px solid var(--glass-border); color: var(--text);
+  }
+  .btn-pricing-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-  opacity: 0;
-  transform: translateY(80px);
-  transition: 1s ease;
-}
+  /* ─── CTA SECTION ─── */
+  #cta .glass-card {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(167,139,250,0.05));
+    padding: 100px 60px;
+  }
+  #cta .section-title { font-size: clamp(2.4rem, 5vw, 4.5rem); }
+  #cta .section-body { margin: 0 auto 48px; max-width: 480px; }
+  .cta-location {
+    margin-top: 48px;
+    font-size: 0.8rem; color: var(--muted); letter-spacing: 0.08em;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .cta-location::before { content: '📍'; }
 
-section.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+  /* ─── FOOTER ─── */
+  footer {
+    max-width: 1200px; margin: 60px auto 0; padding: 48px 24px;
+    border-top: 1px solid var(--glass-border);
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px;
+    align-items: start;
+  }
+  .footer-brand .nav-logo { font-size: 1.5rem; display: block; margin-bottom: 12px; }
+  .footer-tagline { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+  .footer-col h4 {
+    font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col a { font-size: 0.9rem; color: var(--text); text-decoration: none; transition: color 0.3s; }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-bottom {
+    max-width: 1200px; margin: 0 auto; padding: 24px 24px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.78rem; color: var(--muted);
+  }
 
-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 1px;
-  height: 80px;
-  background: linear-gradient(to bottom, transparent, rgba(96,165,250,0.4));
-  transform: translateX(-50%);
-}
+  /* ─── KEYFRAMES ─── */
+  @keyframes fadeSlideDown { from { opacity: 0; transform: translateX(-50%) translateY(-20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+  @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes orbSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+  @keyframes dotPulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--accent); }
+    50% { opacity: 0.5; box-shadow: 0 0 20px var(--accent); }
+  }
 
-h2 {
-  font-size: 56px;
-  margin-bottom: 40px;
-}
-
-/* =========================
-   CONTENT CARDS (LESS EMPTY FEEL)
-========================= */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  gap: 22px;
-}
-
-.card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.10);
-  backdrop-filter: blur(30px);
-  border-radius: 22px;
-  padding: 34px;
-
-  font-size: 18px;
-  line-height: 1.9;
-}
-
-/* =========================
-   PRICING (TOUCH FRIENDLY)
-========================= */
-.pricing {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 22px;
-}
-
-.plan {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.12);
-  backdrop-filter: blur(30px);
-  border-radius: 24px;
-  padding: 30px;
-
-  max-height: 220px;
-  overflow: hidden;
-  transition: 0.8s ease;
-}
-
-/* desktop hover */
-.plan:hover {
-  max-height: 900px;
-  border-color: #60a5fa;
-  transform: translateY(-12px);
-}
-
-/* mobile TAP EXPAND */
-.plan.active {
-  max-height: 900px;
-  border-color: #60a5fa;
-}
-
-.price {
-  font-size: 56px;
-  color: #60a5fa;
-  font-weight: 700;
-  margin: 10px 0;
-}
-
-.details {
-  font-size: 16px;
-  color: #cbd5e1;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: 0.6s ease;
-  line-height: 2;
-}
-
-.plan:hover .details,
-.plan.active .details {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* =========================
-   FAQ (TOUCH FIXED)
-========================= */
-.faq {
-  display: grid;
-  gap: 16px;
-}
-
-.faq-item {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.10);
-  border-radius: 18px;
-  padding: 28px;
-
-  font-size: 20px;
-  max-height: 90px;
-  overflow: hidden;
-  transition: 0.7s ease;
-}
-
-.faq-item:hover,
-.faq-item.active {
-  max-height: 280px;
-  border-color: #60a5fa;
-}
-
-.answer {
-  margin-top: 14px;
-  font-size: 15px;
-  color: #cbd5e1;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: 0.6s ease;
-  line-height: 1.8;
-}
-
-.faq-item:hover .answer,
-.faq-item.active .answer {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* =========================
-   FOOTER
-========================= */
-footer {
-  text-align: center;
-  padding: 80px;
-  color: #94a3b8;
-}
-
-/* =========================
-   MOBILE FIXES
-========================= */
-@media (max-width: 768px) {
-
-  h1 { font-size: 52px; }
-
-  .sub { font-size: 18px; }
-
-  section { padding: 90px 16px; }
-
-  h2 { font-size: 34px; }
-
-  .grid { grid-template-columns: 1fr; }
-
-  .pricing { grid-template-columns: 1fr; }
-
-  .card { font-size: 16px; padding: 22px; }
-
-  .plan { max-height: 200px; }
-
-  .faq-item { font-size: 18px; }
-}
-
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    #about .glass-card, #why .glass-card { grid-template-columns: 1fr; gap: 40px; }
+    .services-grid, .testi-grid, .pricing-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .process-steps::before { display: none; }
+    .glass-card { padding: 48px 32px; }
+    .nav-links { display: none; }
+    footer { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  }
 </style>
 </head>
-
 <body>
 
-<div class="splash">
-  <div class="logo"></div>
-</div>
+<canvas id="bg-canvas"></canvas>
 
-<main>
+<div class="wrapper">
 
-<header>
-  <h1>ZENTRO</h1>
-  <div class="sub">
-    Premium digital systems built for clarity, conversion, and scale.
-  </div>
-  <div class="meta">
-    Founded 2022 • Based in Cheshire
-  </div>
-</header>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Zentro</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <a href="#cta" class="nav-cta">Start a Project</a>
+  </nav>
 
-<section>
-  <h2>What We Do</h2>
-
-  <div class="grid">
-    <div class="card">
-      We design conversion-first websites engineered to increase engagement and customer action.
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-eyebrow">Cheshire's Premier Web Studio · Est. 2022</div>
+    <h1 class="hero-title">
+      Websites that<br>
+      <span class="line2">Actually Work.</span>
+      <span class="line3">Designed in Cheshire. Built for the World.</span>
+    </h1>
+    <p class="hero-sub">We craft high-performance digital experiences that convert visitors into customers. Bold design. Clean code. Real results.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">Explore Our Work</a>
+      <a href="#cta" class="btn-ghost">Get a Free Quote</a>
     </div>
-    <div class="card">
-      Every system is built like a product — structured, scalable, and visually intentional.
+    <div class="hero-scroll">
+      <span class="scroll-text">Scroll</span>
+      <div class="scroll-line"></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section>
-  <h2>Pricing</h2>
-
-  <div class="pricing">
-
-    <div class="plan" onclick="toggle(this)">
-      <h3>Starter</h3>
-      <div class="price">£99</div>
-      <div class="details">
-        Clean landing page built for clarity and speed.<br>
-        Fully responsive layout.<br>
-        Glass UI system.<br>
-        Basic contact integration.
+  <!-- ABOUT -->
+  <section id="about" class="glass-section">
+    <div class="glass-card">
+      <div>
+        <span class="section-label">Who We Are</span>
+        <h2 class="section-title">We build for<br><em>impact</em>, not just looks.</h2>
+        <p class="section-body">Founded in 2022 and based in the heart of Cheshire, Zentro is a boutique web design studio with one obsession — building websites that work as hard as you do. Every pixel is intentional. Every interaction is purposeful.</p>
+        <div class="about-stats">
+          <div class="stat-pill">
+            <span class="stat-number">80+</span>
+            <span class="stat-label">Projects Delivered</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-number">98%</span>
+            <span class="stat-label">Client Satisfaction</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-number">3yr</span>
+            <span class="stat-label">Trading Since 2022</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">Revisions Until Right</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="about-orb"></div>
+        <div class="about-orb-inner">
+          <span class="orb-text">Design.<br>Build.<br>Launch.</span>
+          <span class="orb-sub">Cheshire, UK</span>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="plan" onclick="toggle(this)">
-      <h3>Growth</h3>
-      <div class="price">£299</div>
-      <div class="details">
-        Multi-page structure.<br>
-        SEO optimisation.<br>
-        Conversion-focused UX design.<br>
-        Scalable UI system.
+  <!-- SERVICES -->
+  <section id="services" class="glass-section">
+    <div class="glass-card">
+      <div class="section-header">
+        <span class="section-label">What We Do</span>
+        <h2 class="section-title">Every service,<br><em>crafted with precision</em>.</h2>
+        <p class="section-body">From your first idea to a fully launched website — we handle every step with care and expertise.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🎨</div>
+          <div class="service-name">Brand & Visual Identity</div>
+          <p class="service-desc">Logos, colour systems, and typography that tell your story before you say a word. We build brands that stick.</p>
+          <span class="service-tag">Branding</span>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">💻</div>
+          <div class="service-name">Bespoke Web Design</div>
+          <p class="service-desc">Pixel-perfect, fully custom websites built to reflect your brand. No templates. No shortcuts. Just exceptional design.</p>
+          <span class="service-tag">Design</span>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">⚡</div>
+          <div class="service-name">Web Development</div>
+          <p class="service-desc">Clean, fast, and accessible code that performs across every device and browser. Built on modern web standards.</p>
+          <span class="service-tag">Development</span>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🛒</div>
+          <div class="service-name">E-Commerce Stores</div>
+          <p class="service-desc">Seamless shopping experiences that convert. Shopify, WooCommerce, or fully custom — we'll find the right fit.</p>
+          <span class="service-tag">E-Commerce</span>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔍</div>
+          <div class="service-name">SEO & Performance</div>
+          <p class="service-desc">We don't just build beautiful sites — we build ones Google loves. Technical SEO and speed optimisation baked in from day one.</p>
+          <span class="service-tag">SEO</span>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔧</div>
+          <div class="service-name">Ongoing Support</div>
+          <p class="service-desc">Your site isn't a one-off. We offer retainer packages for updates, security, hosting, and continuous improvements.</p>
+          <span class="service-tag">Support</span>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="plan" onclick="toggle(this)">
-      <h3>Elite</h3>
-      <div class="price">£599</div>
-      <div class="details">
-        Full custom website system.<br>
-        Advanced animations.<br>
-        Brand identity integration.<br>
-        Priority support.
+  <!-- PROCESS -->
+  <section id="process" class="glass-section">
+    <div class="glass-card">
+      <span class="section-label">How We Work</span>
+      <h2 class="section-title">Simple process.<br><em>Extraordinary results</em>.</h2>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-title">Discovery</div>
+          <p class="step-body">We get under the skin of your business. Your goals, your audience, your competitors — we listen first, design second.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-title">Design</div>
+          <p class="step-body">Full wireframes and high-fidelity mockups presented for your feedback. You'll see exactly what we're building before a line of code is written.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-title">Build</div>
+          <p class="step-body">Our developers bring the design to life with clean, performant code. Regular updates keep you in the loop throughout.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-title">Launch</div>
+          <p class="step-body">We handle the entire launch — domain setup, hosting, testing across devices. You go live with confidence.</p>
+        </div>
       </div>
     </div>
+  </section>
 
+  <!-- WHY -->
+  <section id="why" class="glass-section">
+    <div class="glass-card">
+      <div>
+        <span class="section-label">Why Zentro</span>
+        <h2 class="section-title">The Cheshire<br>studio that<br><em>goes further</em>.</h2>
+        <div class="why-list">
+          <div class="why-item">
+            <span class="why-icon">🎯</span>
+            <div>
+              <div class="why-item-title">Strategy-First Design</div>
+              <p class="why-item-body">Every design decision is backed by strategy. We align aesthetics with your business objectives so your site drives real outcomes.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <span class="why-icon">⚡</span>
+            <div>
+              <div class="why-item-title">Lightning-Fast Delivery</div>
+              <p class="why-item-body">We move quickly without cutting corners. Most projects are live within 4–6 weeks from kickoff to launch.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <span class="why-icon">🤝</span>
+            <div>
+              <div class="why-item-title">Local Partnership, Global Standards</div>
+              <p class="why-item-body">Based in Cheshire, we build relationships as well as websites. You'll always have a real person to call.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <span class="why-icon">🛡️</span>
+            <div>
+              <div class="why-item-title">No Hidden Costs</div>
+              <p class="why-item-body">Transparent pricing from day one. What we quote is what you pay. No surprises, no awkward conversations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="why-visual">
+        <div class="tech-badge">
+          <div><div class="tech-badge-name">React & Next.js</div><div class="tech-badge-desc">Lightning-fast frontend frameworks</div></div>
+          <div class="tech-badge-dot"></div>
+        </div>
+        <div class="tech-badge">
+          <div><div class="tech-badge-name">Shopify & WooCommerce</div><div class="tech-badge-desc">Best-in-class e-commerce platforms</div></div>
+          <div class="tech-badge-dot"></div>
+        </div>
+        <div class="tech-badge">
+          <div><div class="tech-badge-name">Figma Design System</div><div class="tech-badge-desc">Pixel-perfect, scalable UI design</div></div>
+          <div class="tech-badge-dot"></div>
+        </div>
+        <div class="tech-badge">
+          <div><div class="tech-badge-name">Core Web Vitals</div><div class="tech-badge-desc">100/100 Lighthouse scores standard</div></div>
+          <div class="tech-badge-dot"></div>
+        </div>
+        <div class="tech-badge">
+          <div><div class="tech-badge-name">Google Analytics & SEO</div><div class="tech-badge-desc">Data-driven visibility from launch</div></div>
+          <div class="tech-badge-dot"></div>
+        </div>
+        <div class="tech-badge">
+          <div><div class="tech-badge-name">SSL & Secure Hosting</div><div class="tech-badge-desc">Enterprise-grade security included</div></div>
+          <div class="tech-badge-dot"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="glass-section">
+    <div class="glass-card">
+      <div class="section-header">
+        <span class="section-label">Client Love</span>
+        <h2 class="section-title">Don't take our<br><em>word for it</em>.</h2>
+        <p class="section-body">Here's what our clients across Cheshire and beyond have to say.</p>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"Zentro completely transformed our online presence. We saw a 40% increase in enquiries within the first month. Genuinely incredible work."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">SR</div>
+            <div><div class="testi-name">Sarah Reynolds</div><div class="testi-role">Founder, Willow & Co — Knutsford</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"The whole process was seamless from start to finish. They understood exactly what we needed and delivered something beyond our expectations."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">JM</div>
+            <div><div class="testi-name">James Mitchell</div><div class="testi-role">Director, Mitchell & Sons — Chester</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"I was blown away by the attention to detail. The site is fast, it looks stunning on mobile, and our conversion rate has doubled. Worth every penny."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">LP</div>
+            <div><div class="testi-name">Laura Patel</div><div class="testi-role">CEO, Petal Studio — Macclesfield</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="glass-section">
+    <div class="glass-card">
+      <div class="section-header">
+        <span class="section-label">Transparent Pricing</span>
+        <h2 class="section-title">Invest in your<br><em>digital future</em>.</h2>
+        <p class="section-body">Clear, honest pricing with no hidden fees. Every package includes full support through launch and beyond.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-tier">Starter</div>
+          <div class="pricing-price"><span>£</span>499</div>
+          <div class="pricing-note">One-time payment</div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li>Up to 5 pages</li>
+            <li>Responsive mobile design</li>
+            <li>Basic SEO setup</li>
+            <li>Contact form integration</li>
+            <li>SSL & fast hosting setup</li>
+            <li>2 rounds of revisions</li>
+          </ul>
+          <a href="#cta" class="btn-pricing btn-pricing-outline">Get Started</a>
+        </div>
+        <div class="pricing-card featured">
+          <span class="pricing-badge">Most Popular</span>
+          <div class="pricing-tier">Growth</div>
+          <div class="pricing-price"><span>£</span>999</div>
+          <div class="pricing-note">One-time payment</div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li>Up to 12 pages</li>
+            <li>Custom animations & interactions</li>
+            <li>Full SEO & sitemap</li>
+            <li>CMS integration (manage your own content)</li>
+            <li>Google Analytics & tracking</li>
+            <li>Unlimited revisions</li>
+          </ul>
+          <a href="#cta" class="btn-pricing btn-pricing-fill">Get Started</a>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-tier">Enterprise</div>
+          <div class="pricing-price">Custom</div>
+          <div class="pricing-note">Bespoke quote</div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li>Unlimited pages & scope</li>
+            <li>Full e-commerce capability</li>
+            <li>Custom web application features</li>
+            <li>Dedicated project manager</li>
+            <li>Ongoing retainer available</li>
+            <li>Priority support & SLA</li>
+          </ul>
+          <a href="#cta" class="btn-pricing btn-pricing-outline">Let's Talk</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta" class="glass-section">
+    <div class="glass-card">
+      <span class="section-label">Ready to Begin?</span>
+      <h2 class="section-title">Let's build something<br><em>extraordinary</em>.</h2>
+      <p class="section-body">Get in touch and we'll get back to you promptly. No obligation, no pressure — just a straight conversation about your project.</p>
+      <div class="hero-btns">
+        <a href="tel:07821298354" class="btn-primary">📞 07821 298354</a>
+        <a href="mailto:info@zentro.uk" class="btn-ghost">✉ info@zentro.uk</a>
+      </div>
+      <div class="cta-location">Cheshire, England · 07821 298354 · info@zentro.uk</div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-brand">
+      <span class="nav-logo">Zentro</span>
+      <p class="footer-tagline">Cheshire's boldest web design studio. Building digital experiences since 2022.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Web Design</a></li>
+        <li><a href="#services">Development</a></li>
+        <li><a href="#services">E-Commerce</a></li>
+        <li><a href="#services">Branding</a></li>
+        <li><a href="#services">SEO</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:07821298354">07821 298354</a></li>
+        <li><a href="mailto:info@zentro.uk">info@zentro.uk</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <span>© 2025 Zentro. All rights reserved. · Cheshire, UK</span>
+    <span>Est. 2022 · Designed & Built by Zentro</span>
   </div>
-</section>
 
-<section>
-  <h2>FAQ</h2>
-
-  <div class="faq">
-
-    <div class="faq-item" onclick="toggleFAQ(this)">
-      How long does delivery take?
-      <div class="answer">Most projects take 3–7 days depending on complexity.</div>
-    </div>
-
-    <div class="faq-item" onclick="toggleFAQ(this)">
-      Do I get revisions?
-      <div class="answer">Yes — revision rounds are included based on your package.</div>
-    </div>
-
-    <div class="faq-item" onclick="toggleFAQ(this)">
-      Is SEO included?
-      <div class="answer">SEO setup is included in Growth and Elite plans.</div>
-    </div>
-
-  </div>
-</section>
-
-<footer>
-  © 2026 Zentro Web Studio
-</footer>
-
-</main>
+</div><!-- end wrapper -->
 
 <script>
+// ── ANIMATED BACKGROUND ──
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
 
-/* scroll storytelling */
-const sections = document.querySelectorAll('section');
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('show');
-    }
+// Particle orbs — deep purple/indigo palette
+const orbs = Array.from({length: 18}, (_, i) => ({
+  x: Math.random() * window.innerWidth,
+  y: Math.random() * window.innerHeight,
+  r: Math.random() * 280 + 80,
+  vx: (Math.random() - 0.5) * 0.35,
+  vy: (Math.random() - 0.5) * 0.35,
+  hue: [258, 272, 245][i % 3],
+  alpha: Math.random() * 0.13 + 0.04
+}));
+
+// Floating particles
+const particles = Array.from({length: 60}, () => ({
+  x: Math.random() * window.innerWidth,
+  y: Math.random() * window.innerHeight,
+  r: Math.random() * 1.5 + 0.3,
+  vx: (Math.random() - 0.5) * 0.2,
+  vy: (Math.random() - 0.5) * 0.2,
+  alpha: Math.random() * 0.4 + 0.08
+}));
+
+function drawBg() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Orbs
+  orbs.forEach(o => {
+    o.x += o.vx; o.y += o.vy;
+    if (o.x < -o.r) o.x = canvas.width + o.r;
+    if (o.x > canvas.width + o.r) o.x = -o.r;
+    if (o.y < -o.r) o.y = canvas.height + o.r;
+    if (o.y > canvas.height + o.r) o.y = -o.r;
+    const g = ctx.createRadialGradient(o.x, o.y, 0, o.x, o.y, o.r);
+    g.addColorStop(0, `hsla(${o.hue}, 75%, 62%, ${o.alpha})`);
+    g.addColorStop(1, `hsla(${o.hue}, 75%, 62%, 0)`);
+    ctx.fillStyle = g;
+    ctx.beginPath(); ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2); ctx.fill();
   });
-},{ threshold: 0.2 });
 
+  // Grid dots
+  ctx.fillStyle = 'rgba(167,139,250,0.03)';
+  const gx = 60, gy = 60;
+  const sy = window.scrollY * 0.05;
+  for (let x = 0; x < canvas.width; x += gx) {
+    for (let y = 0; y < canvas.height; y += gy) {
+      ctx.beginPath(); ctx.arc(x, (y + sy) % canvas.height, 1, 0, Math.PI * 2); ctx.fill();
+    }
+  }
+
+  // Particles
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+    if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+    ctx.fillStyle = `rgba(196,181,253,${p.alpha})`;
+    ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+  });
+
+  requestAnimationFrame(drawBg);
+}
+drawBg();
+
+// ── SCROLL REVEAL ──
+const sections = document.querySelectorAll('.glass-section');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
 sections.forEach(s => observer.observe(s));
 
-/* mobile tap expand FIX */
-function toggle(el){
-  el.classList.toggle('active');
-}
-
-function toggleFAQ(el){
-  el.classList.toggle('active');
-}
-
+// ── SCROLL PARALLAX ON ORBS ──
+window.addEventListener('scroll', () => {
+  const sy = window.scrollY;
+  orbs.forEach((o, i) => {
+    o.y += (i % 2 === 0 ? 0.15 : -0.12) * (sy * 0.001);
+  });
+});
 </script>
-
 </body>
 </html>
