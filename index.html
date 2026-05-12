@@ -10,16 +10,17 @@
 <style>
 
 /* =========================
-   BASE
+   GLOBAL
 ========================= */
 body {
   margin: 0;
   font-family: 'Sora', sans-serif;
   color: white;
   background: radial-gradient(circle at top, #0b1220, #020617);
+  overflow-x: hidden;
 }
 
-/* ambient glow only (NO CURSOR SYSTEM) */
+/* ambient glow */
 body::before,
 body::after {
   content: "";
@@ -27,7 +28,7 @@ body::after {
   width: 700px;
   height: 700px;
   filter: blur(150px);
-  opacity: 0.3;
+  opacity: 0.25;
   z-index: 0;
 }
 
@@ -35,17 +36,70 @@ body::before { background: #3b82f6; left: -300px; top: 20%; }
 body::after { background: #a855f7; right: -300px; bottom: 10%; }
 
 /* =========================
-   HERO (BIGGER)
+   SPLASH SCREEN (LOGO ONLY)
+========================= */
+.splash {
+  position: fixed;
+  inset: 0;
+  background: #020617;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeOut 1s ease forwards;
+  animation-delay: 2.2s;
+}
+
+.logo {
+  width: 90px;
+  height: 90px;
+  border-radius: 20px;
+  background: linear-gradient(135deg,#3b82f6,#a855f7,#22d3ee);
+  box-shadow: 0 0 60px rgba(59,130,246,0.5);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* =========================
+   MAIN PAGE START STATE
+========================= */
+main {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: pageIn 1s ease forwards;
+  animation-delay: 2.3s;
+}
+
+@keyframes pageIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   HERO (CLEANED)
 ========================= */
 header {
   text-align: center;
-  padding: 180px 20px 120px;
+  padding: 150px 20px 90px;
   position: relative;
   z-index: 2;
 }
 
 h1 {
-  font-size: 130px;
+  font-size: 120px;
   margin: 0;
   letter-spacing: -6px;
   background: linear-gradient(90deg,#60a5fa,#a78bfa,#22d3ee);
@@ -54,24 +108,24 @@ h1 {
 }
 
 .sub {
-  font-size: 28px;
+  font-size: 26px;
   color: #cbd5e1;
-  margin-top: 16px;
-  line-height: 1.7;
+  margin-top: 14px;
+  line-height: 1.6;
 }
 
 /* =========================
-   SECTION STORY SYSTEM
+   SECTION STORY FLOW (FIXED SPACING)
 ========================= */
 section {
   max-width: 1200px;
   margin: auto;
-  padding: 160px 20px;
+  padding: 120px 20px;
   position: relative;
   z-index: 2;
 
   opacity: 0;
-  transform: translateY(80px);
+  transform: translateY(60px);
   transition: 1s ease;
 }
 
@@ -80,18 +134,33 @@ section.show {
   transform: translateY(0);
 }
 
-h2 {
-  font-size: 64px;
-  margin-bottom: 50px;
+/* visual connector feel */
+section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, rgba(96,165,250,0.4));
+  transform: translateX(-50%);
 }
 
 /* =========================
-   BIG CLEAR BOXES
+   TITLES
+========================= */
+h2 {
+  font-size: 58px;
+  margin-bottom: 40px;
+}
+
+/* =========================
+   BIG CLEAN CARDS
 ========================= */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-  gap: 30px;
+  gap: 28px;
 }
 
 .card {
@@ -99,10 +168,11 @@ h2 {
   border: 1px solid rgba(255,255,255,0.10);
   backdrop-filter: blur(30px);
   border-radius: 22px;
-  padding: 40px;
+  padding: 38px;
 
-  font-size: 20px;
+  font-size: 19px;
   line-height: 1.9;
+
   transition: 0.5s ease;
 }
 
@@ -112,12 +182,12 @@ h2 {
 }
 
 /* =========================
-   PRICING (BIG + CLEAR)
+   PRICING (CLEAN + PREMIUM)
 ========================= */
 .pricing {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-  gap: 28px;
+  gap: 26px;
 }
 
 .plan {
@@ -138,22 +208,18 @@ h2 {
   border-color: #60a5fa;
 }
 
-.plan h3 {
-  font-size: 26px;
-}
-
 .price {
-  font-size: 60px;
+  font-size: 58px;
   font-weight: 700;
   color: #60a5fa;
   margin: 14px 0;
 }
 
 .details {
-  font-size: 17px;
+  font-size: 16px;
   color: #cbd5e1;
   opacity: 0;
-  transform: translateY(12px);
+  transform: translateY(10px);
   transition: 0.6s ease;
   line-height: 2;
 }
@@ -164,22 +230,22 @@ h2 {
 }
 
 /* =========================
-   FAQ (BIGGEST READABILITY IMPROVEMENT)
+   FAQ (CLEAN + BIG)
 ========================= */
 .faq {
   display: grid;
-  gap: 20px;
+  gap: 18px;
 }
 
 .faq-item {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.10);
   border-radius: 20px;
-  padding: 34px;
+  padding: 32px;
 
   font-size: 22px;
 
-  max-height: 100px;
+  max-height: 90px;
   overflow: hidden;
   transition: 0.7s ease;
 }
@@ -190,8 +256,8 @@ h2 {
 }
 
 .answer {
-  margin-top: 18px;
-  font-size: 17px;
+  margin-top: 16px;
+  font-size: 16px;
   color: #cbd5e1;
   opacity: 0;
   transform: translateY(10px);
@@ -219,10 +285,17 @@ footer {
 
 <body>
 
+<!-- SPLASH -->
+<div class="splash">
+  <div class="logo"></div>
+</div>
+
+<main>
+
 <header>
   <h1>ZENTRO</h1>
   <div class="sub">
-    A premium web studio building high-conversion digital experiences for modern brands.
+    Premium digital experiences designed to feel like a product, not a website.
   </div>
 </header>
 
@@ -231,11 +304,10 @@ footer {
 
   <div class="grid">
     <div class="card">
-      We design high-performance websites that focus on clarity, conversion, and brand perception.
+      We design conversion-driven websites with premium visual hierarchy and clarity.
     </div>
-
     <div class="card">
-      Every interface is structured like a product — not a page — to maximise engagement.
+      Every build is structured like a SaaS product — fast, scalable, and intentional.
     </div>
   </div>
 </section>
@@ -249,10 +321,10 @@ footer {
       <h3>Starter</h3>
       <div class="price">£99</div>
       <div class="details">
-        Single-page website designed for clarity and speed.<br>
-        Fully responsive layout.<br>
-        Clean glass UI system.<br>
-        Contact integration.
+        Single-page premium website<br>
+        Glass UI system<br>
+        Mobile optimisation<br>
+        Contact integration
       </div>
     </div>
 
@@ -260,10 +332,10 @@ footer {
       <h3>Growth</h3>
       <div class="price">£299</div>
       <div class="details">
-        Multi-page website structure.<br>
-        SEO optimisation setup.<br>
-        Conversion-focused layout design.<br>
-        Enhanced UI system and animations.
+        Multi-page structure<br>
+        SEO optimisation<br>
+        Conversion layout system<br>
+        Advanced UI styling
       </div>
     </div>
 
@@ -271,10 +343,10 @@ footer {
       <h3>Elite</h3>
       <div class="price">£599</div>
       <div class="details">
-        Full custom web system.<br>
-        Advanced motion & animations.<br>
-        Brand identity alignment.<br>
-        Priority support & updates.
+        Full custom website<br>
+        Advanced animations system<br>
+        Brand identity system<br>
+        Priority support
       </div>
     </div>
 
@@ -287,23 +359,23 @@ footer {
   <div class="faq">
 
     <div class="faq-item">
-      How long does it take?
+      How long does delivery take?
       <div class="answer">
-        Most projects are delivered within 3–7 days depending on complexity and revisions required.
+        Most projects are completed within 3–7 days depending on scope and revisions.
       </div>
     </div>
 
     <div class="faq-item">
-      Do you offer revisions?
+      Do I get revisions?
       <div class="answer">
-        Yes — revision rounds are included depending on your selected package.
+        Yes — revision rounds depend on your selected package.
       </div>
     </div>
 
     <div class="faq-item">
       Is SEO included?
       <div class="answer">
-        SEO setup is included in Growth and Elite packages only.
+        SEO setup is included in Growth and Elite packages.
       </div>
     </div>
 
@@ -311,12 +383,14 @@ footer {
 </section>
 
 <footer>
-  © 2026 Zentro Web Studio — Premium digital experiences
+  © 2026 Zentro Web Studio
 </footer>
+
+</main>
 
 <script>
 
-/* TRUE SCROLL STORYTELLING */
+/* scroll storytelling */
 const sections = document.querySelectorAll('section');
 
 const observer = new IntersectionObserver(entries => {
