@@ -6,7 +6,7 @@
 <title>Zentro — Web Design Studio, Cheshire</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
     --glass: rgba(255,255,255,0.055);
@@ -105,7 +105,7 @@
   }
   .hero-eyebrow::after { background: linear-gradient(90deg, var(--accent), transparent); }
   .hero-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Outfit', sans-serif;
     font-size: clamp(3rem, 8vw, 8rem);
     font-weight: 900;
     line-height: 0.95;
@@ -114,8 +114,8 @@
     animation: fadeSlideUp 1s 0.5s ease both;
   }
   .hero-title .line2 {
-    font-style: italic; font-weight: 400;
-    background: linear-gradient(135deg, var(--accent2), var(--accent3));
+    font-style: normal; font-weight: 700;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
   .hero-title .line3 {
@@ -198,12 +198,12 @@
     margin-bottom: 20px; display: block;
   }
   .section-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Outfit', sans-serif;
     font-size: clamp(2rem, 5vw, 3.8rem);
     font-weight: 700; line-height: 1.1;
     letter-spacing: -0.02em; margin-bottom: 24px;
   }
-  .section-title em { font-style: italic; color: var(--accent2); }
+  .section-title em { font-style: normal; font-weight: 700; color: var(--accent); }
   .section-body {
     font-size: 1.05rem; color: var(--muted); line-height: 1.8;
     max-width: 600px;
@@ -221,7 +221,7 @@
   }
   .stat-pill:hover { transform: translateY(-4px); border-color: var(--accent); }
   .stat-number {
-    font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 900;
+    font-family: 'Outfit', sans-serif; font-size: 2.6rem; font-weight: 900;
     background: linear-gradient(135deg, var(--accent), var(--accent2));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     display: block; line-height: 1;
@@ -246,8 +246,8 @@
     flex-direction: column; gap: 4px;
   }
   .orb-text {
-    font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
-    font-style: italic; color: var(--text); text-align: center;
+    font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 600;
+    color: var(--text); text-align: center;
   }
   .orb-sub { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
 
@@ -317,7 +317,7 @@
     background: var(--glass);
     border: 1px solid var(--glass-border);
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 900;
+    font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 900;
     margin-bottom: 24px;
     position: relative; z-index: 1;
     box-shadow: 0 0 0 8px var(--dark), inset 0 1px 0 var(--glass-shine);
@@ -378,7 +378,7 @@
   .testi-card:hover { transform: translateY(-6px); border-color: rgba(167,139,250,0.4); }
   .testi-stars { color: var(--accent); font-size: 0.85rem; margin-bottom: 16px; letter-spacing: 2px; }
   .testi-quote {
-    font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem;
+    font-family: 'Outfit', sans-serif; font-style: normal; font-size: 0.95rem;
     line-height: 1.75; color: var(--text); margin-bottom: 24px;
   }
   .testi-author { display: flex; align-items: center; gap: 12px; }
@@ -418,7 +418,7 @@
   }
   .pricing-tier { font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
   .pricing-price {
-    font-family: 'Cormorant Garamond', serif; font-weight: 900; font-size: 3rem;
+    font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 3rem;
     line-height: 1; margin-bottom: 8px;
   }
   .pricing-price span { font-size: 1.2rem; font-weight: 400; vertical-align: super; }
@@ -528,16 +528,16 @@
 
   <!-- HERO -->
   <section id="hero">
-    <div class="hero-eyebrow">Cheshire's Premier Web Studio · Est. 2022</div>
+    <div class="hero-eyebrow">Web Design Studio · Cheshire · Est. 2022</div>
     <h1 class="hero-title">
-      Websites that<br>
-      <span class="line2">Actually Work.</span>
-      <span class="line3">Designed in Cheshire. Built for the World.</span>
+      Your website<br>
+      <span class="line2">should do more.</span>
+      <span class="line3">We design and build websites that get results.</span>
     </h1>
-    <p class="hero-sub">We craft high-performance digital experiences that convert visitors into customers. Bold design. Clean code. Real results.</p>
+    <p class="hero-sub">Zentro is a Cheshire-based web design studio. We build fast, professional websites for businesses that want to grow online.</p>
     <div class="hero-btns">
-      <a href="#services" class="btn-primary">Explore Our Work</a>
-      <a href="#cta" class="btn-ghost">Get a Free Quote</a>
+      <a href="#services" class="btn-primary">See What We Do</a>
+      <a href="#cta" class="btn-ghost">Get a Quote</a>
     </div>
     <div class="hero-scroll">
       <span class="scroll-text">Scroll</span>
@@ -550,8 +550,8 @@
     <div class="glass-card">
       <div>
         <span class="section-label">Who We Are</span>
-        <h2 class="section-title">We build for<br><em>impact</em>, not just looks.</h2>
-        <p class="section-body">Founded in 2022 and based in the heart of Cheshire, Zentro is a boutique web design studio with one obsession — building websites that work as hard as you do. Every pixel is intentional. Every interaction is purposeful.</p>
+        <h2 class="section-title">A web studio built on results.</h2>
+        <p class="section-body">Founded in 2022 and based in Cheshire, Zentro designs and builds websites for businesses of all sizes. We keep things straightforward — great design, solid code, and no unnecessary fluff.</p>
         <div class="about-stats">
           <div class="stat-pill">
             <span class="stat-number">80+</span>
@@ -586,44 +586,44 @@
     <div class="glass-card">
       <div class="section-header">
         <span class="section-label">What We Do</span>
-        <h2 class="section-title">Every service,<br><em>crafted with precision</em>.</h2>
-        <p class="section-body">From your first idea to a fully launched website — we handle every step with care and expertise.</p>
+        <h2 class="section-title">Everything you need, nothing you don't.</h2>
+        <p class="section-body">We cover every part of the process — from design to launch and everything in between.</p>
       </div>
       <div class="services-grid">
         <div class="service-card">
           <div class="service-icon">🎨</div>
           <div class="service-name">Brand & Visual Identity</div>
-          <p class="service-desc">Logos, colour systems, and typography that tell your story before you say a word. We build brands that stick.</p>
+          <p class="service-desc">Logos, colours, and typography that represent your business properly. Built to work across your website, print, and social.</p>
           <span class="service-tag">Branding</span>
         </div>
         <div class="service-card">
           <div class="service-icon">💻</div>
           <div class="service-name">Bespoke Web Design</div>
-          <p class="service-desc">Pixel-perfect, fully custom websites built to reflect your brand. No templates. No shortcuts. Just exceptional design.</p>
+          <p class="service-desc">Custom-designed websites built around your business. No templates, no cutting corners — just a site that looks and works exactly how it should.</p>
           <span class="service-tag">Design</span>
         </div>
         <div class="service-card">
           <div class="service-icon">⚡</div>
           <div class="service-name">Web Development</div>
-          <p class="service-desc">Clean, fast, and accessible code that performs across every device and browser. Built on modern web standards.</p>
+          <p class="service-desc">Clean, fast code that works on every device and browser. Built to load quickly, rank well, and handle whatever traffic you throw at it.</p>
           <span class="service-tag">Development</span>
         </div>
         <div class="service-card">
           <div class="service-icon">🛒</div>
-          <div class="service-name">E-Commerce Stores</div>
-          <p class="service-desc">Seamless shopping experiences that convert. Shopify, WooCommerce, or fully custom — we'll find the right fit.</p>
+          <div class="service-name">E-Commerce</div>
+          <p class="service-desc">Online stores that are easy to manage and easy for customers to use. We work with Shopify, WooCommerce, and custom solutions.</p>
           <span class="service-tag">E-Commerce</span>
         </div>
         <div class="service-card">
           <div class="service-icon">🔍</div>
           <div class="service-name">SEO & Performance</div>
-          <p class="service-desc">We don't just build beautiful sites — we build ones Google loves. Technical SEO and speed optimisation baked in from day one.</p>
+          <p class="service-desc">We build with SEO in mind from day one — fast load times, proper structure, and the technical foundations Google wants to see.</p>
           <span class="service-tag">SEO</span>
         </div>
         <div class="service-card">
           <div class="service-icon">🔧</div>
           <div class="service-name">Ongoing Support</div>
-          <p class="service-desc">Your site isn't a one-off. We offer retainer packages for updates, security, hosting, and continuous improvements.</p>
+          <p class="service-desc">Need updates, security patches, or just someone to call when something breaks? We offer monthly support packages to keep your site running.</p>
           <span class="service-tag">Support</span>
         </div>
       </div>
@@ -634,27 +634,27 @@
   <section id="process" class="glass-section">
     <div class="glass-card">
       <span class="section-label">How We Work</span>
-      <h2 class="section-title">Simple process.<br><em>Extraordinary results</em>.</h2>
+      <h2 class="section-title">A clear process, start to finish.</h2>
       <div class="process-steps">
         <div class="step">
           <div class="step-num">01</div>
           <div class="step-title">Discovery</div>
-          <p class="step-body">We get under the skin of your business. Your goals, your audience, your competitors — we listen first, design second.</p>
+          <p class="step-body">We start by understanding your business — your goals, your customers, and what you actually need from a website.</p>
         </div>
         <div class="step">
           <div class="step-num">02</div>
           <div class="step-title">Design</div>
-          <p class="step-body">Full wireframes and high-fidelity mockups presented for your feedback. You'll see exactly what we're building before a line of code is written.</p>
+          <p class="step-body">We build out wireframes and full designs for your approval before writing a single line of code. No surprises.</p>
         </div>
         <div class="step">
           <div class="step-num">03</div>
           <div class="step-title">Build</div>
-          <p class="step-body">Our developers bring the design to life with clean, performant code. Regular updates keep you in the loop throughout.</p>
+          <p class="step-body">Your site gets built to spec — fast, clean, and tested across all devices. We keep you updated throughout.</p>
         </div>
         <div class="step">
           <div class="step-num">04</div>
           <div class="step-title">Launch</div>
-          <p class="step-body">We handle the entire launch — domain setup, hosting, testing across devices. You go live with confidence.</p>
+          <p class="step-body">We handle everything — domain, hosting, final testing. When it's ready, you go live. Simple as that.</p>
         </div>
       </div>
     </div>
@@ -665,34 +665,34 @@
     <div class="glass-card">
       <div>
         <span class="section-label">Why Zentro</span>
-        <h2 class="section-title">The Cheshire<br>studio that<br><em>goes further</em>.</h2>
+        <h2 class="section-title">We keep it simple and we get it done.</h2>
         <div class="why-list">
           <div class="why-item">
             <span class="why-icon">🎯</span>
             <div>
-              <div class="why-item-title">Strategy-First Design</div>
-              <p class="why-item-body">Every design decision is backed by strategy. We align aesthetics with your business objectives so your site drives real outcomes.</p>
+              <div class="why-item-title">Design That Serves a Purpose</div>
+              <p class="why-item-body">We design around your business goals, not just aesthetics. A good-looking site that doesn't convert is a waste of money.</p>
             </div>
           </div>
           <div class="why-item">
             <span class="why-icon">⚡</span>
             <div>
-              <div class="why-item-title">Lightning-Fast Delivery</div>
-              <p class="why-item-body">We move quickly without cutting corners. Most projects are live within 4–6 weeks from kickoff to launch.</p>
+              <div class="why-item-title">Fast Turnaround</div>
+              <p class="why-item-body">Most projects are complete within 4 to 6 weeks. We don't drag things out — we work to a schedule and stick to it.</p>
             </div>
           </div>
           <div class="why-item">
             <span class="why-icon">🤝</span>
             <div>
-              <div class="why-item-title">Local Partnership, Global Standards</div>
-              <p class="why-item-body">Based in Cheshire, we build relationships as well as websites. You'll always have a real person to call.</p>
+              <div class="why-item-title">Based in Cheshire, Easy to Reach</div>
+              <p class="why-item-body">We're a local studio, not an agency with a ticket system. You'll always speak to someone who knows your project.</p>
             </div>
           </div>
           <div class="why-item">
             <span class="why-icon">🛡️</span>
             <div>
-              <div class="why-item-title">No Hidden Costs</div>
-              <p class="why-item-body">Transparent pricing from day one. What we quote is what you pay. No surprises, no awkward conversations.</p>
+              <div class="why-item-title">Honest Pricing</div>
+              <p class="why-item-body">No hidden fees. We quote upfront, and that's what you pay. If anything changes, we'll tell you before we act.</p>
             </div>
           </div>
         </div>
@@ -730,9 +730,9 @@
   <section id="testimonials" class="glass-section">
     <div class="glass-card">
       <div class="section-header">
-        <span class="section-label">Client Love</span>
-        <h2 class="section-title">Don't take our<br><em>word for it</em>.</h2>
-        <p class="section-body">Here's what our clients across Cheshire and beyond have to say.</p>
+        <span class="section-label">What Clients Say</span>
+        <h2 class="section-title">Results our clients have seen.</h2>
+        <p class="section-body">Businesses across Cheshire and beyond trust Zentro to build their online presence.</p>
       </div>
       <div class="testi-grid">
         <div class="testi-card">
@@ -767,9 +767,9 @@
   <section id="pricing" class="glass-section">
     <div class="glass-card">
       <div class="section-header">
-        <span class="section-label">Transparent Pricing</span>
-        <h2 class="section-title">Invest in your<br><em>digital future</em>.</h2>
-        <p class="section-body">Clear, honest pricing with no hidden fees. Every package includes full support through launch and beyond.</p>
+        <span class="section-label">Pricing</span>
+        <h2 class="section-title">Straightforward pricing. No surprises.</h2>
+        <p class="section-body">Fixed prices, one-time payments. You know exactly what you're getting before we start.</p>
       </div>
       <div class="pricing-grid">
         <div class="pricing-card">
@@ -825,9 +825,9 @@
   <!-- CTA -->
   <section id="cta" class="glass-section">
     <div class="glass-card">
-      <span class="section-label">Ready to Begin?</span>
-      <h2 class="section-title">Let's build something<br><em>extraordinary</em>.</h2>
-      <p class="section-body">Get in touch and we'll get back to you promptly. No obligation, no pressure — just a straight conversation about your project.</p>
+      <span class="section-label">Get in Touch</span>
+      <h2 class="section-title">Ready to get started?</h2>
+      <p class="section-body">Give us a call or drop us an email. We'll have a quick chat about your project and get back to you with a clear quote.</p>
       <div class="hero-btns">
         <a href="tel:07821298354" class="btn-primary">📞 07821 298354</a>
         <a href="mailto:info@zentro.uk" class="btn-ghost">✉ info@zentro.uk</a>
@@ -839,7 +839,7 @@
   <footer>
     <div class="footer-brand">
       <span class="nav-logo">Zentro</span>
-      <p class="footer-tagline">Cheshire's boldest web design studio. Building digital experiences since 2022.</p>
+      <p class="footer-tagline">Web design and development for businesses in Cheshire and across the UK. Est. 2022.</p>
     </div>
     <div class="footer-col">
       <h4>Services</h4>
