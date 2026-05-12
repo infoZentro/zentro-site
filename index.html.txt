@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Zentro Web Studio</title>
+  <style>
+    body { font-family: Arial; margin:0; background:#0f172a; color:white; text-align:center; }
+    header { padding:80px 20px; }
+    h1 { font-size:48px; }
+    p { color:#cbd5e1; font-size:18px; }
+    .btn { padding:12px 20px; background:#3b82f6; color:white; text-decoration:none; border-radius:8px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Zentro</h1>
+  <p>We build modern websites for small businesses</p>
+  <a class="btn" href="#">Get a Website</a>
+</header>
+
+</body>
+</html>
