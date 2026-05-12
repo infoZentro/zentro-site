@@ -9,6 +9,9 @@
 
 <style>
 
+/* =========================
+   GLOBAL SYSTEM
+========================= */
 body {
   margin: 0;
   font-family: 'Sora', sans-serif;
@@ -17,51 +20,107 @@ body {
   overflow-x: hidden;
 }
 
-/* glow */
-body::before, body::after {
+/* ambient glow system */
+body::before,
+body::after {
   content: "";
   position: fixed;
-  width: 520px;
-  height: 520px;
+  width: 600px;
+  height: 600px;
   filter: blur(140px);
-  opacity: 0.4;
+  opacity: 0.35;
   z-index: 0;
-  animation: float 14s ease-in-out infinite;
+  animation: float 16s ease-in-out infinite;
 }
 
-body::before { background: #3b82f6; left: -200px; top: 20%; }
-body::after { background: #a855f7; right: -200px; bottom: 10%; }
+body::before { background: #3b82f6; left: -250px; top: 20%; }
+body::after { background: #a855f7; right: -250px; bottom: 10%; }
 
 @keyframes float {
   0%,100% { transform: translateY(0px); }
-  50% { transform: translateY(-60px); }
+  50% { transform: translateY(-70px); }
 }
 
-/* layout */
-section {
-  max-width: 1000px;
-  margin: auto;
-  padding: 80px 20px;
+/* =========================
+   HEADER / LOGO SYSTEM
+========================= */
+header {
+  text-align: center;
+  padding: 120px 20px 60px;
   position: relative;
   z-index: 2;
 }
 
+/* LOGO */
+.logo {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 20px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #3b82f6, #a855f7, #22d3ee);
+  box-shadow: 0 0 40px rgba(59,130,246,0.4);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
 h1 {
-  font-size: 86px;
+  font-size: 88px;
   margin: 0;
-  text-align: center;
+  letter-spacing: -3px;
   background: linear-gradient(90deg, #60a5fa, #a78bfa, #22d3ee);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .sub {
-  text-align: center;
+  font-size: 20px;
   color: #cbd5e1;
   margin-top: 10px;
 }
 
-/* cards */
+/* CTA */
+.btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(20px);
+  transition: 0.4s ease;
+  color: white;
+  text-decoration: none;
+}
+
+.btn:hover {
+  transform: translateY(-8px) scale(1.06);
+  border-color: #60a5fa;
+}
+
+/* =========================
+   SECTIONS BASE
+========================= */
+section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 90px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+h2 {
+  font-size: 42px;
+  margin-bottom: 25px;
+  letter-spacing: -1px;
+}
+
+/* =========================
+   GLASS CARDS
+========================= */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -70,18 +129,26 @@ h1 {
 
 .card {
   background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.10);
   backdrop-filter: blur(22px);
   border-radius: 16px;
   padding: 18px;
   font-size: 13px;
   line-height: 1.6;
+  transition: 0.4s ease;
 }
 
-/* pricing */
+.card:hover {
+  transform: translateY(-10px);
+  border-color: #60a5fa;
+}
+
+/* =========================
+   PRICING SYSTEM
+========================= */
 .pricing {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 16px;
 }
 
@@ -89,7 +156,7 @@ h1 {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.12);
   backdrop-filter: blur(25px);
-  border-radius: 16px;
+  border-radius: 18px;
   padding: 18px;
   overflow: hidden;
   max-height: 140px;
@@ -98,8 +165,8 @@ h1 {
 }
 
 .plan:hover {
-  max-height: 360px;
-  transform: translateY(-10px);
+  max-height: 380px;
+  transform: translateY(-12px);
   border-color: #60a5fa;
 }
 
@@ -122,16 +189,41 @@ h1 {
   transform: translateY(0);
 }
 
-/* review stars */
-.stars {
-  color: #fbbf24;
-  font-size: 14px;
+/* =========================
+   TIMELINE
+========================= */
+.timeline {
+  border-left: 2px solid rgba(255,255,255,0.2);
+  padding-left: 20px;
 }
 
-/* footer */
+.step {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #cbd5e1;
+}
+
+/* =========================
+   FAQ
+========================= */
+.faq {
+  display: grid;
+  gap: 12px;
+}
+
+.faq div {
+  background: rgba(255,255,255,0.05);
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* =========================
+   FOOTER
+========================= */
 footer {
   text-align: center;
-  padding: 50px;
+  padding: 60px;
   color: #94a3b8;
 }
 
@@ -141,24 +233,36 @@ footer {
 <body>
 
 <header>
+  <div class="logo"></div>
   <h1>ZENTRO</h1>
-  <div class="sub">Premium web design that converts attention into customers</div>
+  <div class="sub">Premium websites engineered for growth & conversion</div>
+  <a class="btn" href="#pricing">View Pricing</a>
 </header>
 
 <section>
-  <h2>Founded & Brand Story</h2>
+  <h2>About Zentro</h2>
   <div class="card">
-    Zentro is a modern web design studio focused on building high-performance business websites.<br><br>
-    <b>Established 2022</b> — built to help small businesses look and perform like premium brands online.
+    Zentro is a modern web studio focused on building high-performance digital experiences.<br><br>
+    <b>Established 2022</b> — built to help businesses look and perform like premium brands online.
   </div>
 </section>
 
 <section>
-  <h2>What We Do</h2>
+  <h2>Services</h2>
   <div class="grid">
-    <div class="card">High-converting business websites</div>
-    <div class="card">Clean glass UI design systems</div>
-    <div class="card">Fast, mobile-first builds</div>
+    <div class="card">High-converting web design</div>
+    <div class="card">Glass UI systems</div>
+    <div class="card">SEO optimisation</div>
+  </div>
+</section>
+
+<section>
+  <h2>Process</h2>
+  <div class="timeline">
+    <div class="step">1. Discovery & strategy</div>
+    <div class="step">2. UI/UX design system</div>
+    <div class="step">3. Development & testing</div>
+    <div class="step">4. Launch & optimisation</div>
   </div>
 </section>
 
@@ -170,34 +274,19 @@ footer {
     <div class="plan">
       <h3>Starter</h3>
       <div class="price">£99</div>
-      <div class="details">
-        Single page website<br>
-        Glass UI system<br>
-        Mobile responsive<br>
-        Contact section
-      </div>
+      <div class="details">1 page site • Glass UI • Mobile optimised</div>
     </div>
 
     <div class="plan">
       <h3>Growth</h3>
       <div class="price">£299</div>
-      <div class="details">
-        Up to 5 pages<br>
-        SEO setup<br>
-        Conversion layout<br>
-        Premium UI system
-      </div>
+      <div class="details">5 pages • SEO • Conversion design</div>
     </div>
 
     <div class="plan">
       <h3>Elite</h3>
       <div class="price">£599</div>
-      <div class="details">
-        Full custom build<br>
-        Advanced animations<br>
-        Brand identity system<br>
-        Priority support
-      </div>
+      <div class="details">Full custom build • Animations • Priority support</div>
     </div>
 
   </div>
@@ -205,24 +294,19 @@ footer {
 
 <section>
   <h2>Client Feedback</h2>
-
   <div class="grid">
+    <div class="card">★★★★★ “Feels like a premium agency site.”</div>
+    <div class="card">★★★★★ “We got more enquiries instantly.”</div>
+    <div class="card">★★★★★ “Clean, fast, professional.”</div>
+  </div>
+</section>
 
-    <div class="card">
-      <div class="stars">★★★★★</div>
-      “Our website instantly looked more premium and brought in more enquiries.”
-    </div>
-
-    <div class="card">
-      <div class="stars">★★★★★</div>
-      “Clean design, fast loading, and actually converts visitors.”
-    </div>
-
-    <div class="card">
-      <div class="stars">★★★★★</div>
-      “Feels like a high-end agency site — exactly what we needed.”
-    </div>
-
+<section>
+  <h2>FAQ</h2>
+  <div class="faq">
+    <div>How long does a website take? — Usually 3–7 days.</div>
+    <div>Do you offer revisions? — Yes, depending on package.</div>
+    <div>Is SEO included? — Included in Growth & Elite.</div>
   </div>
 </section>
 
@@ -230,7 +314,7 @@ footer {
   <h2>Contact</h2>
   <div class="card">
     <b>hello@zentro.uk</b><br><br>
-    We build websites that turn brands into premium businesses.
+    Let’s build something premium.
   </div>
 </section>
 
