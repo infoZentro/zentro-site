@@ -10,7 +10,7 @@
 <style>
 
 /* =========================
-   GLOBAL SYSTEM
+   GLOBAL
 ========================= */
 body {
   margin: 0;
@@ -18,16 +18,64 @@ body {
   color: white;
   background: radial-gradient(circle at top, #0b1220, #020617);
   overflow-x: hidden;
+  cursor: none;
 }
 
-/* ambient glow system */
+/* =========================
+   CURSOR SYSTEM
+========================= */
+.cursor {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  background: rgba(96,165,250,0.9);
+  box-shadow: 0 0 25px rgba(96,165,250,0.6);
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.cursor-blur {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  background: rgba(168,85,247,0.2);
+  filter: blur(15px);
+  transform: translate(-50%, -50%);
+  z-index: 9998;
+}
+
+/* =========================
+   LANDING STRIP
+========================= */
+.strip {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(90deg, transparent, rgba(59,130,246,0.15), rgba(168,85,247,0.15), transparent);
+  animation: moveStrip 6s linear infinite;
+  z-index: 1;
+}
+
+@keyframes moveStrip {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* =========================
+   BACKGROUND GLOW
+========================= */
 body::before,
 body::after {
   content: "";
   position: fixed;
-  width: 600px;
-  height: 600px;
-  filter: blur(140px);
+  width: 650px;
+  height: 650px;
+  filter: blur(150px);
   opacity: 0.35;
   z-index: 0;
   animation: float 16s ease-in-out infinite;
@@ -38,150 +86,144 @@ body::after { background: #a855f7; right: -250px; bottom: 10%; }
 
 @keyframes float {
   0%,100% { transform: translateY(0px); }
-  50% { transform: translateY(-70px); }
+  50% { transform: translateY(-80px); }
 }
 
 /* =========================
-   HEADER / LOGO SYSTEM
+   HEADER
 ========================= */
 header {
   text-align: center;
-  padding: 120px 20px 60px;
+  padding: 140px 20px 70px;
   position: relative;
   z-index: 2;
 }
 
-/* LOGO */
 .logo {
-  width: 72px;
-  height: 72px;
+  width: 78px;
+  height: 78px;
   margin: 0 auto 20px;
   border-radius: 18px;
-  background: linear-gradient(135deg, #3b82f6, #a855f7, #22d3ee);
-  box-shadow: 0 0 40px rgba(59,130,246,0.4);
-  animation: pulse 3s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.08); }
+  background: linear-gradient(135deg,#3b82f6,#a855f7,#22d3ee);
+  box-shadow: 0 0 50px rgba(59,130,246,0.4);
 }
 
 h1 {
-  font-size: 88px;
+  font-size: 102px;
   margin: 0;
-  letter-spacing: -3px;
-  background: linear-gradient(90deg, #60a5fa, #a78bfa, #22d3ee);
+  letter-spacing: -4px;
+  background: linear-gradient(90deg,#60a5fa,#a78bfa,#22d3ee);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .sub {
-  font-size: 20px;
+  font-size: 22px;
   color: #cbd5e1;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
-/* CTA */
+/* =========================
+   BUTTON
+========================= */
 .btn {
   display: inline-block;
-  margin-top: 25px;
-  padding: 14px 28px;
-  border-radius: 12px;
+  margin-top: 28px;
+  padding: 16px 32px;
+  border-radius: 14px;
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.12);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(25px);
   transition: 0.4s ease;
-  color: white;
-  text-decoration: none;
 }
 
 .btn:hover {
-  transform: translateY(-8px) scale(1.06);
+  transform: translateY(-10px) scale(1.06);
   border-color: #60a5fa;
 }
 
 /* =========================
-   SECTIONS BASE
+   SECTIONS
 ========================= */
 section {
   max-width: 1100px;
   margin: auto;
-  padding: 90px 20px;
+  padding: 110px 20px;
   position: relative;
   z-index: 2;
 }
 
 h2 {
-  font-size: 42px;
-  margin-bottom: 25px;
-  letter-spacing: -1px;
+  font-size: 48px;
+  margin-bottom: 28px;
 }
 
 /* =========================
-   GLASS CARDS
+   BIG CARDS
 ========================= */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
 }
 
 .card {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.10);
-  backdrop-filter: blur(22px);
-  border-radius: 16px;
-  padding: 18px;
-  font-size: 13px;
+  backdrop-filter: blur(25px);
+  border-radius: 18px;
+  padding: 22px;
+  font-size: 14px;
   line-height: 1.6;
-  transition: 0.4s ease;
+  transition: 0.5s ease;
 }
 
 .card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-12px);
   border-color: #60a5fa;
 }
 
 /* =========================
-   PRICING SYSTEM
+   PRICING (DETAILED)
 ========================= */
 .pricing {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
 }
 
 .plan {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.12);
-  backdrop-filter: blur(25px);
-  border-radius: 18px;
-  padding: 18px;
+  backdrop-filter: blur(28px);
+  border-radius: 20px;
+  padding: 22px;
+
+  max-height: 160px;
   overflow: hidden;
-  max-height: 140px;
-  transition: 0.6s ease;
-  cursor: pointer;
+
+  transition: max-height 0.7s ease, transform 0.4s ease;
 }
 
 .plan:hover {
-  max-height: 380px;
-  transform: translateY(-12px);
+  max-height: 520px;
+  transform: translateY(-14px);
   border-color: #60a5fa;
 }
 
 .price {
-  font-size: 34px;
+  font-size: 38px;
   font-weight: 700;
   color: #60a5fa;
+  margin: 8px 0;
 }
 
 .details {
+  font-size: 13px;
+  color: #cbd5e1;
   opacity: 0;
   transform: translateY(10px);
   transition: 0.5s ease;
-  font-size: 12px;
-  color: #cbd5e1;
 }
 
 .plan:hover .details {
@@ -189,33 +231,46 @@ h2 {
   transform: translateY(0);
 }
 
-/* =========================
-   TIMELINE
-========================= */
-.timeline {
-  border-left: 2px solid rgba(255,255,255,0.2);
-  padding-left: 20px;
-}
-
-.step {
-  margin-bottom: 20px;
-  font-size: 14px;
-  color: #cbd5e1;
+.details ul {
+  margin-top: 10px;
+  padding-left: 18px;
 }
 
 /* =========================
-   FAQ
+   FAQ DROPDOWN (HOVER)
 ========================= */
 .faq {
   display: grid;
   gap: 12px;
 }
 
-.faq div {
+.faq-item {
   background: rgba(255,255,255,0.05);
-  padding: 16px;
-  border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 16px;
+  cursor: pointer;
+  overflow: hidden;
+  max-height: 60px;
+  transition: max-height 0.5s ease;
+}
+
+.faq-item:hover {
+  max-height: 200px;
+  border-color: #60a5fa;
+}
+
+.answer {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.4s ease;
+  font-size: 13px;
+  color: #cbd5e1;
+}
+
+.faq-item:hover .answer {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* =========================
@@ -232,41 +287,28 @@ footer {
 
 <body>
 
+<div class="cursor"></div>
+<div class="cursor-blur"></div>
+
+<div class="strip"></div>
+
 <header>
   <div class="logo"></div>
   <h1>ZENTRO</h1>
-  <div class="sub">Premium websites engineered for growth & conversion</div>
-  <a class="btn" href="#pricing">View Pricing</a>
+  <div class="sub">Premium web design that converts attention into revenue</div>
+  <a class="btn">Get Started</a>
 </header>
 
 <section>
-  <h2>About Zentro</h2>
-  <div class="card">
-    Zentro is a modern web studio focused on building high-performance digital experiences.<br><br>
-    <b>Established 2022</b> — built to help businesses look and perform like premium brands online.
-  </div>
-</section>
-
-<section>
-  <h2>Services</h2>
+  <h2>What We Do</h2>
   <div class="grid">
-    <div class="card">High-converting web design</div>
-    <div class="card">Glass UI systems</div>
-    <div class="card">SEO optimisation</div>
+    <div class="card">High-converting SaaS-style websites</div>
+    <div class="card">Luxury glass UI systems</div>
+    <div class="card">Fast, scalable web builds</div>
   </div>
 </section>
 
 <section>
-  <h2>Process</h2>
-  <div class="timeline">
-    <div class="step">1. Discovery & strategy</div>
-    <div class="step">2. UI/UX design system</div>
-    <div class="step">3. Development & testing</div>
-    <div class="step">4. Launch & optimisation</div>
-  </div>
-</section>
-
-<section id="pricing">
   <h2>Pricing</h2>
 
   <div class="pricing">
@@ -274,53 +316,84 @@ footer {
     <div class="plan">
       <h3>Starter</h3>
       <div class="price">£99</div>
-      <div class="details">1 page site • Glass UI • Mobile optimised</div>
+      <div class="details">
+        <ul>
+          <li>Single page website</li>
+          <li>Glass UI design system</li>
+          <li>Mobile optimisation</li>
+          <li>Email contact section</li>
+        </ul>
+      </div>
     </div>
 
     <div class="plan">
       <h3>Growth</h3>
       <div class="price">£299</div>
-      <div class="details">5 pages • SEO • Conversion design</div>
+      <div class="details">
+        <ul>
+          <li>Up to 5 pages</li>
+          <li>SEO optimisation</li>
+          <li>Conversion-focused layout</li>
+          <li>Advanced UI system</li>
+        </ul>
+      </div>
     </div>
 
     <div class="plan">
       <h3>Elite</h3>
       <div class="price">£599</div>
-      <div class="details">Full custom build • Animations • Priority support</div>
+      <div class="details">
+        <ul>
+          <li>Full custom build</li>
+          <li>Advanced animations system</li>
+          <li>Brand identity system</li>
+          <li>Priority support</li>
+        </ul>
+      </div>
     </div>
 
   </div>
 </section>
 
 <section>
-  <h2>Client Feedback</h2>
-  <div class="grid">
-    <div class="card">★★★★★ “Feels like a premium agency site.”</div>
-    <div class="card">★★★★★ “We got more enquiries instantly.”</div>
-    <div class="card">★★★★★ “Clean, fast, professional.”</div>
-  </div>
-</section>
-
-<section>
   <h2>FAQ</h2>
-  <div class="faq">
-    <div>How long does a website take? — Usually 3–7 days.</div>
-    <div>Do you offer revisions? — Yes, depending on package.</div>
-    <div>Is SEO included? — Included in Growth & Elite.</div>
-  </div>
-</section>
 
-<section>
-  <h2>Contact</h2>
-  <div class="card">
-    <b>hello@zentro.uk</b><br><br>
-    Let’s build something premium.
+  <div class="faq">
+
+    <div class="faq-item">
+      What is delivery time?
+      <div class="answer">Most projects are delivered within 3–7 days depending on complexity.</div>
+    </div>
+
+    <div class="faq-item">
+      Do you offer revisions?
+      <div class="answer">Yes, revisions are included depending on your package tier.</div>
+    </div>
+
+    <div class="faq-item">
+      Is SEO included?
+      <div class="answer">SEO setup is included in Growth and Elite packages.</div>
+    </div>
+
   </div>
 </section>
 
 <footer>
   © 2026 Zentro Web Studio
 </footer>
+
+<script>
+const cursor = document.querySelector('.cursor');
+const blur = document.querySelector('.cursor-blur');
+
+document.addEventListener('mousemove', (e) => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+
+  blur.style.left = e.clientX + 'px';
+  blur.style.top = e.clientY + 'px';
+});
+</script>
 
 </body>
 </html>
