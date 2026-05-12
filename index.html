@@ -3,155 +3,139 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zentro | Premium Web Studio</title>
+<title>Zentro | Web Design Studio</title>
 
 <style>
-/* ===== GLOBAL ===== */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top, #0b1220, #020617);
   color: white;
-  overflow-x: hidden;
-  background: linear-gradient(-45deg, #0b1220, #111827, #0f172a, #020617);
-  background-size: 400% 400%;
-  animation: gradientBG 12s ease infinite;
-}
-
-/* BACKGROUND ANIMATION */
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* FLOATING GLOW ORBS */
-body::before, body::after {
-  content: "";
-  position: fixed;
-  width: 300px;
-  height: 300px;
-  background: rgba(59,130,246,0.25);
-  border-radius: 50%;
-  filter: blur(100px);
-  z-index: 0;
-  animation: float 10s ease-in-out infinite;
-}
-
-body::after {
-  right: 10%;
-  top: 20%;
-  background: rgba(168,85,247,0.25);
-}
-
-body::before {
-  left: 10%;
-  bottom: 10%;
-}
-
-@keyframes float {
-  0%,100% { transform: translateY(0px); }
-  50% { transform: translateY(-40px); }
 }
 
 /* HERO */
 header {
-  position: relative;
   text-align: center;
-  padding: 120px 20px;
-  z-index: 2;
+  padding: 140px 20px 100px;
+  background: linear-gradient(135deg, #111827, #0b1220);
 }
 
 h1 {
-  font-size: 72px;
+  font-size: 92px;
   margin: 0;
-  letter-spacing: 3px;
-  animation: fadeUp 1s ease;
+  letter-spacing: 4px;
+  font-weight: 900;
 }
 
-p {
+.sub {
+  font-size: 22px;
   color: #cbd5e1;
-  font-size: 18px;
-  animation: fadeUp 1.2s ease;
+  margin-top: 15px;
 }
 
-/* BUTTON */
 .btn {
   display: inline-block;
-  margin-top: 25px;
-  padding: 14px 28px;
-  background: rgba(59,130,246,0.8);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
+  margin-top: 30px;
+  padding: 16px 34px;
+  background: #3b82f6;
+  border-radius: 14px;
   color: white;
   text-decoration: none;
-  transition: 0.4s ease;
+  font-size: 18px;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
 .btn:hover {
-  transform: translateY(-5px) scale(1.05);
-  background: rgba(59,130,246,1);
+  transform: scale(1.06);
+  background: #2563eb;
 }
 
 /* SECTIONS */
 section {
   max-width: 1100px;
   margin: auto;
-  padding: 80px 20px;
-  position: relative;
-  z-index: 2;
+  padding: 90px 20px;
 }
 
-/* GLASS CARDS */
-.card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  backdrop-filter: blur(20px);
-  padding: 25px;
-  border-radius: 16px;
-  transition: 0.5s ease;
-  transform: translateY(40px);
-  opacity: 0;
+h2 {
+  font-size: 44px;
+  margin-bottom: 25px;
+  color: #60a5fa;
 }
 
-.card:hover {
-  transform: translateY(-10px) scale(1.02);
-  border-color: rgba(59,130,246,0.6);
+/* TEXT */
+.bigtext {
+  font-size: 20px;
+  color: #cbd5e1;
+  line-height: 1.8;
 }
 
 /* GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
 }
 
-/* HEADINGS */
-h2 {
+/* CARDS */
+.card {
+  background: rgba(255,255,255,0.05);
+  padding: 22px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* IMAGES */
+.imgcard img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* PRICING */
+.pricing {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.plan {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 18px;
+  padding: 25px;
+  transition: 0.4s ease;
+}
+
+.plan:hover {
+  transform: translateY(-10px);
+  border-color: #3b82f6;
+}
+
+.price {
   font-size: 34px;
-  margin-bottom: 20px;
+  font-weight: bold;
+  margin: 10px 0;
   color: #60a5fa;
 }
 
-/* REVEAL */
-.show {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  transition: all 0.8s ease;
+ul {
+  padding-left: 18px;
+  color: #cbd5e1;
 }
 
-/* FADE UP */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+.small {
+  color: #94a3b8;
+  font-size: 14px;
 }
 
 /* FOOTER */
 footer {
   text-align: center;
-  padding: 40px;
+  padding: 50px;
   color: #94a3b8;
-  position: relative;
-  z-index: 2;
 }
 </style>
 </head>
@@ -160,73 +144,115 @@ footer {
 
 <header>
   <h1>ZENTRO</h1>
-  <p>Premium web design that turns visitors into customers</p>
-  <a class="btn" href="#contact">Start Your Project</a>
+  <div class="sub">We design websites that turn visitors into paying customers</div>
+  <a class="btn" href="#pricing">View Pricing</a>
 </header>
 
 <section>
-  <h2>What We Do</h2>
-  <div class="grid">
-    <div class="card">High-converting business websites built for growth.</div>
-    <div class="card">Modern UI/UX design with premium visuals.</div>
-    <div class="card">Optimised for speed, SEO, and mobile.</div>
+  <h2>Why Your Website Matters</h2>
+  <div class="bigtext">
+    Your website is your first impression — and your main sales tool.<br><br>
+    We build websites that don’t just look good… they <b>generate business</b>.
   </div>
 </section>
 
 <section>
-  <h2>Services</h2>
+  <h2>What We Build</h2>
   <div class="grid">
-    <div class="card"><b>Web Design</b><br>Luxury modern interfaces.</div>
-    <div class="card"><b>Development</b><br>Fast, scalable builds.</div>
-    <div class="card"><b>Branding</b><br>Identity systems.</div>
-    <div class="card"><b>SEO</b><br>Google-ready structure.</div>
+
+    <div class="card">
+      <img class="imgcard" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
+      <p>Modern, clean business websites that build trust instantly.</p>
+    </div>
+
+    <div class="card">
+      <img class="imgcard" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c">
+      <p>Designed for growth, conversions, and customer engagement.</p>
+    </div>
+
+    <div class="card">
+      <img class="imgcard" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71">
+      <p>Fast, SEO-optimised websites built for performance.</p>
+    </div>
+
   </div>
 </section>
 
 <section>
-  <h2>Process</h2>
+  <h2>What You Get</h2>
   <div class="grid">
-    <div class="card">Discovery</div>
-    <div class="card">Design</div>
-    <div class="card">Build</div>
-    <div class="card">Launch</div>
+    <div class="card">🔥 Premium modern design</div>
+    <div class="card">⚡ Fast loading performance</div>
+    <div class="card">📱 Mobile optimised</div>
+    <div class="card">📈 Built for conversions</div>
+  </div>
+</section>
+
+<section id="pricing">
+  <h2>Pricing</h2>
+
+  <div class="pricing">
+
+    <div class="plan">
+      <h3>Starter</h3>
+      <div class="price">£99</div>
+      <p class="small">Perfect for small businesses</p>
+      <ul>
+        <li>1 Page Website</li>
+        <li>Mobile Responsive</li>
+        <li>Basic Design</li>
+        <li>Email Contact Section</li>
+      </ul>
+    </div>
+
+    <div class="plan">
+      <h3>Business</h3>
+      <div class="price">£299</div>
+      <p class="small">Most popular choice</p>
+      <ul>
+        <li>Up to 5 Pages</li>
+        <li>Premium Design</li>
+        <li>SEO Setup</li>
+        <li>Contact Form</li>
+        <li>Speed Optimisation</li>
+      </ul>
+    </div>
+
+    <div class="plan">
+      <h3>Premium</h3>
+      <div class="price">£599</div>
+      <p class="small">Full business solution</p>
+      <ul>
+        <li>Unlimited Pages</li>
+        <li>Advanced UI Design</li>
+        <li>Full SEO Strategy</li>
+        <li>Animations & Effects</li>
+        <li>Priority Support</li>
+      </ul>
+    </div>
+
   </div>
 </section>
 
 <section>
-  <h2>Testimonials</h2>
-  <div class="grid">
-    <div class="card">“Instantly improved our brand image.”</div>
-    <div class="card">“Looks like a £5k agency site.”</div>
-    <div class="card">“We got real customers from it.”</div>
+  <h2>Results Focused</h2>
+  <div class="bigtext">
+    We don’t build “just websites”.<br><br>
+    We build digital systems that help businesses get more customers and grow faster.
   </div>
 </section>
 
-<section id="contact">
+<section>
   <h2>Contact</h2>
   <div class="card">
-    Email: <b>hello@zentro.uk</b><br>
-    We respond within 24 hours.
+    <b style="font-size:20px;">hello@zentro.uk</b><br><br>
+    Tell us your idea — we’ll build it into a real business website.
   </div>
 </section>
 
 <footer>
   © 2026 Zentro Web Studio
 </footer>
-
-<script>
-const cards = document.querySelectorAll('.card');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
-    }
-  });
-}, { threshold: 0.15 });
-
-cards.forEach(card => observer.observe(card));
-</script>
 
 </body>
 </html>
