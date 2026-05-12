@@ -10,7 +10,7 @@
 <style>
 
 /* =========================
-   GLOBAL
+   BASE
 ========================= */
 body {
   margin: 0;
@@ -18,109 +18,47 @@ body {
   color: white;
   background: radial-gradient(circle at top, #0b1220, #020617);
   overflow-x: hidden;
-  cursor: none;
 }
 
-/* =========================
-   CURSOR SYSTEM
-========================= */
-.cursor {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  background: rgba(96,165,250,0.9);
-  box-shadow: 0 0 25px rgba(96,165,250,0.6);
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-}
-
-.cursor-blur {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  background: rgba(168,85,247,0.2);
-  filter: blur(15px);
-  transform: translate(-50%, -50%);
-  z-index: 9998;
-}
-
-/* =========================
-   LANDING STRIP
-========================= */
-.strip {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 120px;
-  background: linear-gradient(90deg, transparent, rgba(59,130,246,0.15), rgba(168,85,247,0.15), transparent);
-  animation: moveStrip 6s linear infinite;
-  z-index: 1;
-}
-
-@keyframes moveStrip {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-/* =========================
-   BACKGROUND GLOW
-========================= */
+/* ambient glow */
 body::before,
 body::after {
   content: "";
   position: fixed;
-  width: 650px;
-  height: 650px;
+  width: 700px;
+  height: 700px;
   filter: blur(150px);
-  opacity: 0.35;
+  opacity: 0.3;
   z-index: 0;
-  animation: float 16s ease-in-out infinite;
 }
 
-body::before { background: #3b82f6; left: -250px; top: 20%; }
-body::after { background: #a855f7; right: -250px; bottom: 10%; }
-
-@keyframes float {
-  0%,100% { transform: translateY(0px); }
-  50% { transform: translateY(-80px); }
-}
+body::before { background: #3b82f6; left: -300px; top: 20%; }
+body::after { background: #a855f7; right: -300px; bottom: 10%; }
 
 /* =========================
-   HEADER
+   HERO
 ========================= */
 header {
   text-align: center;
-  padding: 140px 20px 70px;
+  padding: 160px 20px 100px;
   position: relative;
   z-index: 2;
 }
 
-.logo {
-  width: 78px;
-  height: 78px;
-  margin: 0 auto 20px;
-  border-radius: 18px;
-  background: linear-gradient(135deg,#3b82f6,#a855f7,#22d3ee);
-  box-shadow: 0 0 50px rgba(59,130,246,0.4);
-}
-
 h1 {
-  font-size: 102px;
+  font-size: 120px;
   margin: 0;
-  letter-spacing: -4px;
+  letter-spacing: -5px;
   background: linear-gradient(90deg,#60a5fa,#a78bfa,#22d3ee);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .sub {
-  font-size: 22px;
+  font-size: 26px;
   color: #cbd5e1;
-  margin-top: 12px;
+  margin-top: 14px;
+  line-height: 1.6;
 }
 
 /* =========================
@@ -128,102 +66,121 @@ h1 {
 ========================= */
 .btn {
   display: inline-block;
-  margin-top: 28px;
-  padding: 16px 32px;
+  margin-top: 30px;
+  padding: 18px 36px;
   border-radius: 14px;
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.12);
   backdrop-filter: blur(25px);
+  font-size: 16px;
   transition: 0.4s ease;
+  color: white;
+  text-decoration: none;
 }
 
 .btn:hover {
-  transform: translateY(-10px) scale(1.06);
+  transform: translateY(-8px) scale(1.05);
   border-color: #60a5fa;
 }
 
 /* =========================
-   SECTIONS
+   SECTIONS (BIGGER + CLEARER)
 ========================= */
 section {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: auto;
-  padding: 110px 20px;
+  padding: 140px 20px;
   position: relative;
   z-index: 2;
+
+  opacity: 0;
+  transform: translateY(60px);
+  transition: 1s ease;
+}
+
+section.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 h2 {
-  font-size: 48px;
-  margin-bottom: 28px;
+  font-size: 60px;
+  margin-bottom: 40px;
 }
 
 /* =========================
-   BIG CARDS
+   BIG READABLE CARDS
 ========================= */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 28px;
 }
 
 .card {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.10);
-  backdrop-filter: blur(25px);
-  border-radius: 18px;
-  padding: 22px;
-  font-size: 14px;
-  line-height: 1.6;
+  backdrop-filter: blur(30px);
+  border-radius: 20px;
+  padding: 32px;
+
+  font-size: 18px;
+  line-height: 1.8;
+
   transition: 0.5s ease;
 }
 
 .card:hover {
-  transform: translateY(-12px);
+  transform: translateY(-10px);
   border-color: #60a5fa;
 }
 
 /* =========================
-   PRICING (DETAILED)
+   PRICING (CLEAR + SPACED)
 ========================= */
 .pricing {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 24px;
 }
 
 .plan {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.12);
-  backdrop-filter: blur(28px);
-  border-radius: 20px;
-  padding: 22px;
+  backdrop-filter: blur(30px);
+  border-radius: 22px;
+  padding: 28px;
 
-  max-height: 160px;
+  max-height: 200px;
   overflow: hidden;
-
-  transition: max-height 0.7s ease, transform 0.4s ease;
+  transition: 0.7s ease;
 }
 
 .plan:hover {
-  max-height: 520px;
-  transform: translateY(-14px);
+  max-height: 650px;
+  transform: translateY(-12px);
   border-color: #60a5fa;
 }
 
+.plan h3 {
+  font-size: 22px;
+  margin: 0;
+}
+
 .price {
-  font-size: 38px;
+  font-size: 52px;
   font-weight: 700;
   color: #60a5fa;
-  margin: 8px 0;
+  margin: 12px 0;
 }
 
 .details {
-  font-size: 13px;
+  font-size: 16px;
   color: #cbd5e1;
   opacity: 0;
   transform: translateY(10px);
   transition: 0.5s ease;
+  line-height: 1.9;
 }
 
 .plan:hover .details {
@@ -231,41 +188,40 @@ h2 {
   transform: translateY(0);
 }
 
-.details ul {
-  margin-top: 10px;
-  padding-left: 18px;
-}
-
 /* =========================
-   FAQ DROPDOWN (HOVER)
+   FAQ (VERY READABLE)
 ========================= */
 .faq {
   display: grid;
-  gap: 12px;
+  gap: 18px;
 }
 
 .faq-item {
   background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 14px;
-  padding: 16px;
-  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 18px;
+  padding: 28px;
+
+  font-size: 20px;
+
+  max-height: 90px;
   overflow: hidden;
-  max-height: 60px;
-  transition: max-height 0.5s ease;
+  transition: 0.6s ease;
 }
 
 .faq-item:hover {
-  max-height: 200px;
+  max-height: 260px;
   border-color: #60a5fa;
 }
 
 .answer {
+  margin-top: 16px;
+  font-size: 16px;
+  color: #cbd5e1;
   opacity: 0;
   transform: translateY(10px);
-  transition: 0.4s ease;
-  font-size: 13px;
-  color: #cbd5e1;
+  transition: 0.5s ease;
+  line-height: 1.8;
 }
 
 .faq-item:hover .answer {
@@ -278,8 +234,9 @@ h2 {
 ========================= */
 footer {
   text-align: center;
-  padding: 60px;
+  padding: 80px;
   color: #94a3b8;
+  font-size: 16px;
 }
 
 </style>
@@ -287,24 +244,27 @@ footer {
 
 <body>
 
-<div class="cursor"></div>
-<div class="cursor-blur"></div>
-
-<div class="strip"></div>
-
 <header>
-  <div class="logo"></div>
   <h1>ZENTRO</h1>
-  <div class="sub">Premium web design that converts attention into revenue</div>
+  <div class="sub">
+    Premium web design built for clarity, performance, and conversion.
+  </div>
   <a class="btn">Get Started</a>
 </header>
 
 <section>
   <h2>What We Do</h2>
+
   <div class="grid">
-    <div class="card">High-converting SaaS-style websites</div>
-    <div class="card">Luxury glass UI systems</div>
-    <div class="card">Fast, scalable web builds</div>
+    <div class="card">
+      We build high-end websites designed to convert visitors into paying customers.
+    </div>
+    <div class="card">
+      Every design is structured with clarity, spacing, and premium visual hierarchy.
+    </div>
+    <div class="card">
+      Fast, modern builds engineered for real business growth.
+    </div>
   </div>
 </section>
 
@@ -317,12 +277,10 @@ footer {
       <h3>Starter</h3>
       <div class="price">£99</div>
       <div class="details">
-        <ul>
-          <li>Single page website</li>
-          <li>Glass UI design system</li>
-          <li>Mobile optimisation</li>
-          <li>Email contact section</li>
-        </ul>
+        Single page website<br>
+        Premium glass UI design<br>
+        Mobile optimisation<br>
+        Contact section included
       </div>
     </div>
 
@@ -330,12 +288,10 @@ footer {
       <h3>Growth</h3>
       <div class="price">£299</div>
       <div class="details">
-        <ul>
-          <li>Up to 5 pages</li>
-          <li>SEO optimisation</li>
-          <li>Conversion-focused layout</li>
-          <li>Advanced UI system</li>
-        </ul>
+        Up to 5 pages<br>
+        SEO optimisation<br>
+        Conversion-focused structure<br>
+        Advanced UI system<br>
       </div>
     </div>
 
@@ -343,12 +299,10 @@ footer {
       <h3>Elite</h3>
       <div class="price">£599</div>
       <div class="details">
-        <ul>
-          <li>Full custom build</li>
-          <li>Advanced animations system</li>
-          <li>Brand identity system</li>
-          <li>Priority support</li>
-        </ul>
+        Full custom website build<br>
+        Advanced animations system<br>
+        Brand identity system<br>
+        Priority support<br>
       </div>
     </div>
 
@@ -361,38 +315,48 @@ footer {
   <div class="faq">
 
     <div class="faq-item">
-      What is delivery time?
-      <div class="answer">Most projects are delivered within 3–7 days depending on complexity.</div>
+      How long does a website take?
+      <div class="answer">
+        Most projects are completed within 3–7 days depending on complexity and revisions.
+      </div>
     </div>
 
     <div class="faq-item">
       Do you offer revisions?
-      <div class="answer">Yes, revisions are included depending on your package tier.</div>
+      <div class="answer">
+        Yes, revisions are included depending on your selected package tier.
+      </div>
     </div>
 
     <div class="faq-item">
       Is SEO included?
-      <div class="answer">SEO setup is included in Growth and Elite packages.</div>
+      <div class="answer">
+        SEO setup is included in Growth and Elite packages.
+      </div>
     </div>
 
   </div>
 </section>
 
 <footer>
-  © 2026 Zentro Web Studio
+  © 2026 Zentro Web Studio — Built for premium digital experiences
 </footer>
 
 <script>
-const cursor = document.querySelector('.cursor');
-const blur = document.querySelector('.cursor-blur');
 
-document.addEventListener('mousemove', (e) => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
+/* scroll reveal */
+const sections = document.querySelectorAll('section');
 
-  blur.style.left = e.clientX + 'px';
-  blur.style.top = e.clientY + 'px';
-});
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+},{ threshold: 0.15 });
+
+sections.forEach(s => observer.observe(s));
+
 </script>
 
 </body>
