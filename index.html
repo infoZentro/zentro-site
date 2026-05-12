@@ -9,23 +9,22 @@
 
 <style>
 
-/* ========== GLOBAL ========== */
 body {
   margin: 0;
   font-family: 'Sora', sans-serif;
   color: white;
-  overflow-x: hidden;
   background: radial-gradient(circle at top, #0b1220, #020617);
+  overflow-x: hidden;
 }
 
-/* animated glow */
+/* glow background */
 body::before, body::after {
   content: "";
   position: fixed;
-  width: 600px;
-  height: 600px;
-  filter: blur(140px);
-  opacity: 0.5;
+  width: 500px;
+  height: 500px;
+  filter: blur(130px);
+  opacity: 0.4;
   z-index: 0;
   animation: float 14s ease-in-out infinite;
 }
@@ -40,40 +39,23 @@ body::after {
   background: #a855f7;
   right: -200px;
   bottom: 10%;
-  animation-delay: 4s;
 }
 
 @keyframes float {
-  0%,100% { transform: translateY(0px) scale(1); }
-  50% { transform: translateY(-60px) scale(1.1); }
+  0%,100% { transform: translateY(0px); }
+  50% { transform: translateY(-60px); }
 }
 
-/* ========== HEADER ========== */
+/* HERO */
 header {
   text-align: center;
-  padding: 140px 20px 100px;
+  padding: 130px 20px 80px;
   position: relative;
   z-index: 2;
 }
 
-/* LOGO */
-.logo {
-  width: 70px;
-  height: 70px;
-  margin: 0 auto 20px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, #3b82f6, #a855f7);
-  box-shadow: 0 0 40px rgba(59,130,246,0.4);
-  animation: pulse 3s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.08); }
-}
-
 h1 {
-  font-size: 96px;
+  font-size: 86px;
   margin: 0;
   letter-spacing: -3px;
   font-weight: 700;
@@ -83,165 +65,143 @@ h1 {
 }
 
 .sub {
-  font-size: 22px;
+  font-size: 20px;
   color: #cbd5e1;
-  margin-top: 15px;
+  margin-top: 12px;
 }
 
 /* BUTTON */
 .btn {
   display: inline-block;
-  margin-top: 30px;
-  padding: 16px 34px;
-  border-radius: 14px;
-  text-decoration: none;
-  font-weight: 600;
-  color: white;
+  margin-top: 25px;
+  padding: 14px 28px;
+  border-radius: 12px;
   background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.15);
+  color: white;
+  text-decoration: none;
   transition: 0.4s ease;
 }
 
 .btn:hover {
-  transform: translateY(-8px) scale(1.06);
+  transform: translateY(-6px) scale(1.05);
   border-color: #60a5fa;
 }
 
-/* ========== SECTIONS ========== */
+/* SECTIONS */
 section {
-  max-width: 1100px;
+  max-width: 1000px;
   margin: auto;
-  padding: 110px 20px;
+  padding: 80px 20px;
   position: relative;
   z-index: 2;
 }
 
 h2 {
-  font-size: 52px;
-  margin-bottom: 30px;
+  font-size: 42px;
+  margin-bottom: 25px;
   letter-spacing: -1px;
 }
 
-/* TEXT */
-.bigtext {
-  font-size: 22px;
-  color: #cbd5e1;
-  line-height: 1.9;
-}
-
-/* ========== CARDS (BIGGER + MORE DEPTH) ========== */
+/* GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
 }
 
+/* SMALLER GLASS BOXES */
 .card {
   background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.12);
-  backdrop-filter: blur(25px);
-  border-radius: 20px;
-  padding: 32px;
-  min-height: 160px;
-
-  transition: 0.6s ease;
-  transform: translateY(30px);
-  opacity: 0;
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(22px);
+  border-radius: 16px;
+  padding: 18px;
+  font-size: 14px;
+  line-height: 1.5;
+  transition: 0.4s ease;
 }
 
 .card:hover {
-  transform: translateY(-14px) scale(1.03);
-  border-color: rgba(96,165,250,0.7);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  transform: translateY(-8px);
+  border-color: rgba(96,165,250,0.6);
 }
 
-/* PRICING BIGGER */
+/* ===== PRICING ===== */
 .pricing {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
 }
 
 .plan {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.12);
-  backdrop-filter: blur(30px);
-  border-radius: 22px;
-  padding: 36px;
-  transition: 0.6s ease;
+  backdrop-filter: blur(25px);
+  border-radius: 18px;
+  padding: 22px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  overflow: hidden;
+  max-height: 160px;
 }
 
+/* hover expand */
 .plan:hover {
-  transform: translateY(-16px) scale(1.02);
+  max-height: 320px;
+  transform: translateY(-10px);
   border-color: #60a5fa;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
 }
 
+/* price */
 .price {
-  font-size: 46px;
+  font-size: 36px;
   font-weight: 700;
-  margin: 12px 0;
   color: #60a5fa;
+  margin: 8px 0;
 }
 
-ul {
+/* hidden details */
+.details {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.4s ease;
+  font-size: 13px;
   color: #cbd5e1;
-  padding-left: 18px;
 }
 
-/* REVEAL */
-.show {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
+/* reveal on hover */
+.plan:hover .details {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* FOOTER */
 footer {
   text-align: center;
-  padding: 60px;
+  padding: 50px;
   color: #94a3b8;
-  position: relative;
-  z-index: 2;
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo"></div>
-
   <h1>ZENTRO</h1>
-  <div class="sub">Premium websites engineered for growth & conversion</div>
+  <div class="sub">Premium websites engineered for growth</div>
   <a class="btn" href="#pricing">View Pricing</a>
 </header>
 
 <section>
-  <h2>Luxury Digital Presence</h2>
-  <div class="bigtext">
-    We don’t build websites — we build high-end digital experiences that make businesses look premium instantly.
-  </div>
-</section>
-
-<section>
-  <h2>What We Deliver</h2>
+  <h2>What We Do</h2>
   <div class="grid">
 
-    <div class="card">Elite glass UI systems with modern depth and motion.</div>
-    <div class="card">Performance-optimised builds for speed and conversion.</div>
-    <div class="card">Mobile-first layouts with premium visual hierarchy.</div>
-
-  </div>
-</section>
-
-<section>
-  <h2>Design Philosophy</h2>
-  <div class="grid">
-
-    <div class="card">Minimal, sharp, and intentional spacing.</div>
-    <div class="card">Focus on attention flow and user psychology.</div>
-    <div class="card">Luxury feel without visual noise.</div>
+    <div class="card">High-converting websites built for modern businesses.</div>
+    <div class="card">Clean, glass UI systems designed for trust & clarity.</div>
+    <div class="card">Fast, mobile-first builds optimised for growth.</div>
 
   </div>
 </section>
@@ -254,34 +214,34 @@ footer {
     <div class="plan">
       <h3>Starter</h3>
       <div class="price">£99</div>
-      <ul>
-        <li>Single page site</li>
-        <li>Glass UI design</li>
-        <li>Mobile responsive</li>
-        <li>Contact section</li>
-      </ul>
+      <div class="details">
+        • Single page website<br>
+        • Glass UI design<br>
+        • Mobile responsive<br>
+        • Contact section<br>
+      </div>
     </div>
 
     <div class="plan">
       <h3>Growth</h3>
       <div class="price">£299</div>
-      <ul>
-        <li>Up to 5 pages</li>
-        <li>Premium UI system</li>
-        <li>SEO setup</li>
-        <li>Conversion layout</li>
-      </ul>
+      <div class="details">
+        • Up to 5 pages<br>
+        • Premium UI system<br>
+        • SEO optimisation<br>
+        • Conversion layout<br>
+      </div>
     </div>
 
     <div class="plan">
       <h3>Elite</h3>
       <div class="price">£599</div>
-      <ul>
-        <li>Full custom build</li>
-        <li>Advanced animations</li>
-        <li>Brand system</li>
-        <li>Priority support</li>
-      </ul>
+      <div class="details">
+        • Full custom build<br>
+        • Advanced animations<br>
+        • Brand system<br>
+        • Priority support<br>
+      </div>
     </div>
 
   </div>
@@ -289,36 +249,24 @@ footer {
 
 <section>
   <h2>Built for Results</h2>
-  <div class="bigtext">
-    Every website is designed to increase trust, improve conversions, and elevate brand perception instantly.
+  <div class="grid">
+    <div class="card">Designed to increase trust instantly.</div>
+    <div class="card">Optimised for conversions and sales.</div>
+    <div class="card">Built to make businesses look premium.</div>
   </div>
 </section>
 
 <section>
   <h2>Contact</h2>
   <div class="card">
-    <b style="font-size:22px;">hello@zentro.uk</b><br><br>
-    Let’s build something premium.
+    <b style="font-size:18px;">hello@zentro.uk</b><br><br>
+    We build websites that actually grow businesses.
   </div>
 </section>
 
 <footer>
   © 2026 Zentro Web Studio
 </footer>
-
-<script>
-const cards = document.querySelectorAll('.card');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
-    }
-  });
-}, { threshold: 0.15 });
-
-cards.forEach(card => observer.observe(card));
-</script>
 
 </body>
 </html>
