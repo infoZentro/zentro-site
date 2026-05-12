@@ -1,32 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zentro | Web Design Studio</title>
+<title>Zentro | Premium Web Studio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
+/* ========== GLOBAL ========== */
 body {
   margin: 0;
   font-family: 'Space Grotesk', sans-serif;
-  background: radial-gradient(circle at top, #0b1220, #020617);
   color: white;
+  overflow-x: hidden;
+  background: radial-gradient(circle at top, #0b1220, #020617);
 }
 
-/* HERO */
+/* animated ambient glow background */
+body::before, body::after {
+  content: "";
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  filter: blur(120px);
+  z-index: 0;
+  opacity: 0.5;
+  animation: float 12s ease-in-out infinite;
+}
+
+body::before {
+  background: #3b82f6;
+  left: -150px;
+  top: 20%;
+}
+
+body::after {
+  background: #a855f7;
+  right: -150px;
+  bottom: 10%;
+  animation-delay: 3s;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0px); }
+  50% { transform: translateY(-50px); }
+}
+
+/* ========== HERO ========== */
 header {
   text-align: center;
   padding: 140px 20px 100px;
-  background: linear-gradient(135deg, #111827, #0b1220);
+  position: relative;
+  z-index: 2;
 }
 
 h1 {
   font-size: 96px;
   margin: 0;
-  letter-spacing: -2px;
+  letter-spacing: -3px;
   font-weight: 700;
-  text-transform: uppercase;
-  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  background: linear-gradient(90deg, #60a5fa, #a78bfa, #22d3ee);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -35,108 +70,239 @@ h1 {
   font-size: 22px;
   color: #cbd5e1;
   margin-top: 15px;
-  font-weight: 400;
 }
 
-/* BUTTON */
+/* CTA */
 .btn {
   display: inline-block;
   margin-top: 30px;
   padding: 16px 34px;
-  background: #3b82f6;
   border-radius: 14px;
-  color: white;
   text-decoration: none;
-  font-size: 18px;
   font-weight: 600;
-  transition: 0.3s;
+  color: white;
+
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.15);
+
+  transition: 0.4s ease;
 }
 
 .btn:hover {
-  transform: translateY(-4px) scale(1.05);
-  background: #2563eb;
+  transform: translateY(-6px) scale(1.05);
+  border-color: #60a5fa;
 }
 
-/* SECTIONS */
+/* ========== SECTIONS ========== */
 section {
   max-width: 1100px;
   margin: auto;
   padding: 90px 20px;
+  position: relative;
+  z-index: 2;
 }
 
 h2 {
   font-size: 46px;
   margin-bottom: 25px;
   letter-spacing: -1px;
-  font-weight: 700;
-  color: #60a5fa;
 }
 
-/* TEXT */
+/* text */
 .bigtext {
   font-size: 20px;
   color: #cbd5e1;
   line-height: 1.8;
 }
 
-/* GRID */
+/* ========== GLASS CARDS ========== */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
 }
 
-/* CARDS */
 .card {
   background: rgba(255,255,255,0.05);
-  padding: 22px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.1);
-  transition: 0.4s ease;
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(22px);
+  border-radius: 18px;
+  padding: 24px;
+
+  transition: 0.5s ease;
+  transform: translateY(20px);
+  opacity: 0;
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  border-color: #3b82f6;
+  transform: translateY(-10px) scale(1.02);
+  border-color: rgba(96,165,250,0.6);
 }
 
-/* PRICING */
+/* reveal animation */
+.show {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* ========== PRICING (HERO FEATURE) ========== */
 .pricing {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 25px;
 }
 
 .plan {
   background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 18px;
-  padding: 25px;
-  transition: 0.4s ease;
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(25px);
+  border-radius: 20px;
+  padding: 30px;
+
+  transition: 0.5s ease;
 }
 
 .plan:hover {
-  transform: translateY(-10px);
+  transform: translateY(-12px);
   border-color: #60a5fa;
 }
 
 .price {
-  font-size: 38px;
+  font-size: 42px;
   font-weight: 700;
   margin: 10px 0;
   color: #60a5fa;
 }
 
 ul {
-  padding-left: 18px;
   color: #cbd5e1;
+  padding-left: 18px;
 }
 
-/* FOOTER */
+/* ========== FOOTER ========== */
 footer {
   text-align: center;
   padding: 50px;
   color: #94a3b8;
+  position: relative;
+  z-index: 2;
 }
+
 </style>
 </head>
+
+<body>
+
+<header>
+  <h1>ZENTRO</h1>
+  <div class="sub">Premium web design that converts attention into revenue</div>
+  <a class="btn" href="#pricing">View Pricing</a>
+</header>
+
+<section>
+  <h2>Luxury Web Experience</h2>
+  <div class="bigtext">
+    We design websites with one goal: <b>make your business look premium and generate clients.</b><br><br>
+    Every detail is engineered for clarity, trust, and conversion.
+  </div>
+</section>
+
+<section>
+  <h2>What We Deliver</h2>
+  <div class="grid">
+
+    <div class="card">Elite modern UI systems with glass aesthetic design.</div>
+    <div class="card">High-speed performance and conversion optimisation.</div>
+    <div class="card">Mobile-first layouts built for all devices.</div>
+
+  </div>
+</section>
+
+<section>
+  <h2>Design Philosophy</h2>
+  <div class="grid">
+
+    <div class="card">Minimal. Clean. High contrast hierarchy.</div>
+    <div class="card">Focus on clarity and user attention flow.</div>
+    <div class="card">Built to feel expensive, not complicated.</div>
+
+  </div>
+</section>
+
+<section id="pricing">
+  <h2>Pricing</h2>
+
+  <div class="pricing">
+
+    <div class="plan">
+      <h3>Starter</h3>
+      <div class="price">£99</div>
+      <ul>
+        <li>Single page website</li>
+        <li>Glass UI design</li>
+        <li>Mobile responsive</li>
+        <li>Email contact section</li>
+      </ul>
+    </div>
+
+    <div class="plan">
+      <h3>Growth</h3>
+      <div class="price">£299</div>
+      <ul>
+        <li>Up to 5 pages</li>
+        <li>Premium UI system</li>
+        <li>SEO optimisation</li>
+        <li>Advanced layout structure</li>
+      </ul>
+    </div>
+
+    <div class="plan">
+      <h3>Elite</h3>
+      <div class="price">£599</div>
+      <ul>
+        <li>Full custom website</li>
+        <li>Advanced animations</li>
+        <li>Conversion optimisation</li>
+        <li>Priority support</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>Built for Growth</h2>
+  <div class="bigtext">
+    Every website is designed to increase trust, improve conversions, and elevate brand perception instantly.
+  </div>
+</section>
+
+<section>
+  <h2>Contact</h2>
+  <div class="card">
+    <b style="font-size:22px;">hello@zentro.uk</b><br><br>
+    Let’s build something premium.
+  </div>
+</section>
+
+<footer>
+  © 2026 Zentro Web Studio
+</footer>
+
+<script>
+const cards = document.querySelectorAll('.card');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, { threshold: 0.15 });
+
+cards.forEach(card => observer.observe(card));
+</script>
+
+</body>
+</html>
