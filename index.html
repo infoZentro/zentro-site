@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zentro</title>
+<title>Zentro | Premium Web Studio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -15,13 +15,12 @@
 body {
   margin: 0;
   font-family: 'Sora', sans-serif;
-  background: radial-gradient(circle at top, #0b1220, #020617);
   color: white;
+  background: radial-gradient(circle at top, #0b1220, #020617);
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }
 
-/* glow background */
+/* ambient depth */
 body::before,
 body::after {
   content: "";
@@ -29,113 +28,278 @@ body::after {
   width: 800px;
   height: 800px;
   filter: blur(160px);
-  opacity: 0.2;
+  opacity: 0.22;
   z-index: 0;
 }
 
-body::before { background: #3b82f6; left: -300px; top: 20%; }
-body::after { background: #a855f7; right: -300px; bottom: 10%; }
+body::before { background: #3b82f6; left: -350px; top: 20%; }
+body::after { background: #a855f7; right: -350px; bottom: 10%; }
 
 /* =========================
-   STICKY STORY SECTIONS (APPLE STYLE)
+   SPLASH
 ========================= */
-.story {
-  height: 100vh;
+.splash {
+  position: fixed;
+  inset: 0;
+  background: #020617;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: sticky;
-  top: 0;
-  z-index: 2;
+  z-index: 9999;
+  animation: fadeOut 1s ease forwards;
+  animation-delay: 2s;
+}
 
+.logo {
+  width: 90px;
+  height: 90px;
+  border-radius: 22px;
+  background: linear-gradient(135deg,#3b82f6,#a855f7,#22d3ee);
+  box-shadow: 0 0 60px rgba(59,130,246,0.45);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+/* =========================
+   MAIN ENTRY
+========================= */
+main {
   opacity: 0;
-  transform: scale(0.95);
-  transition: 0.8s ease;
+  transform: translateY(15px);
+  animation: pageIn 1s ease forwards;
+  animation-delay: 2.1s;
 }
 
-.story.active {
-  opacity: 1;
-  transform: scale(1);
+@keyframes pageIn {
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.inner {
-  max-width: 900px;
+/* =========================
+   HERO
+========================= */
+header {
   text-align: center;
-  padding: 20px;
+  padding: 140px 20px 60px;
+  position: relative;
+  z-index: 2;
 }
 
 h1 {
-  font-size: 90px;
+  font-size: 110px;
   margin: 0;
+  letter-spacing: -5px;
   background: linear-gradient(90deg,#60a5fa,#a78bfa,#22d3ee);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-h2 {
-  font-size: 48px;
-  margin-bottom: 20px;
+.sub {
+  font-size: 22px;
+  color: #cbd5e1;
+  margin-top: 14px;
+  line-height: 1.7;
 }
 
-p {
-  font-size: 18px;
-  color: #cbd5e1;
-  line-height: 1.8;
+/* credibility strip */
+.meta {
+  margin-top: 18px;
+  font-size: 14px;
+  color: #94a3b8;
 }
 
 /* =========================
-   PRICING CTA PANEL
+   APPLE-STYLE STORY SECTIONS
+========================= */
+section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 120px 20px;
+  position: relative;
+  z-index: 2;
+
+  opacity: 0;
+  transform: translateY(80px);
+  transition: 1s ease;
+}
+
+section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, rgba(96,165,250,0.4));
+  transform: translateX(-50%);
+}
+
+h2 {
+  font-size: 56px;
+  margin-bottom: 40px;
+}
+
+/* =========================
+   CONTENT CARDS (LESS EMPTY FEEL)
+========================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(30px);
+  border-radius: 22px;
+  padding: 34px;
+
+  font-size: 18px;
+  line-height: 1.9;
+}
+
+/* =========================
+   PRICING (TOUCH FRIENDLY)
 ========================= */
 .pricing {
   display: grid;
-  gap: 16px;
-  margin-top: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 22px;
 }
 
 .plan {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 18px;
-  padding: 18px;
+  backdrop-filter: blur(30px);
+  border-radius: 24px;
+  padding: 30px;
+
+  max-height: 220px;
+  overflow: hidden;
+  transition: 0.8s ease;
+}
+
+/* desktop hover */
+.plan:hover {
+  max-height: 900px;
+  border-color: #60a5fa;
+  transform: translateY(-12px);
+}
+
+/* mobile TAP EXPAND */
+.plan.active {
+  max-height: 900px;
+  border-color: #60a5fa;
 }
 
 .price {
-  font-size: 40px;
+  font-size: 56px;
   color: #60a5fa;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.details {
+  font-size: 16px;
+  color: #cbd5e1;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.6s ease;
+  line-height: 2;
+}
+
+.plan:hover .details,
+.plan.active .details {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* =========================
-   FORM (LEAD CAPTURE)
+   FAQ (TOUCH FIXED)
 ========================= */
-form {
-  margin-top: 30px;
+.faq {
   display: grid;
-  gap: 12px;
+  gap: 16px;
 }
 
-input, textarea {
-  padding: 14px;
-  border-radius: 12px;
-  border: none;
-  outline: none;
-  font-family: inherit;
+.faq-item {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 18px;
+  padding: 28px;
+
+  font-size: 20px;
+  max-height: 90px;
+  overflow: hidden;
+  transition: 0.7s ease;
 }
 
-button {
-  padding: 14px;
-  border-radius: 12px;
-  border: none;
-  background: linear-gradient(90deg,#3b82f6,#a855f7);
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
+.faq-item:hover,
+.faq-item.active {
+  max-height: 280px;
+  border-color: #60a5fa;
+}
+
+.answer {
+  margin-top: 14px;
+  font-size: 15px;
+  color: #cbd5e1;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.6s ease;
+  line-height: 1.8;
+}
+
+.faq-item:hover .answer,
+.faq-item.active .answer {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* =========================
-   INERTIA SCROLL FEEL (SOFT)
+   FOOTER
 ========================= */
-html {
-  scroll-behavior: smooth;
+footer {
+  text-align: center;
+  padding: 80px;
+  color: #94a3b8;
+}
+
+/* =========================
+   MOBILE FIXES
+========================= */
+@media (max-width: 768px) {
+
+  h1 { font-size: 52px; }
+
+  .sub { font-size: 18px; }
+
+  section { padding: 90px 16px; }
+
+  h2 { font-size: 34px; }
+
+  .grid { grid-template-columns: 1fr; }
+
+  .pricing { grid-template-columns: 1fr; }
+
+  .card { font-size: 16px; padding: 22px; }
+
+  .plan { max-height: 200px; }
+
+  .faq-item { font-size: 18px; }
 }
 
 </style>
@@ -143,90 +307,128 @@ html {
 
 <body>
 
-<!-- STORY 1 -->
-<section class="story active">
-  <div class="inner">
-    <h1>ZENTRO</h1>
-    <p>Premium digital systems designed with Apple-level clarity and precision.</p>
+<div class="splash">
+  <div class="logo"></div>
+</div>
+
+<main>
+
+<header>
+  <h1>ZENTRO</h1>
+  <div class="sub">
+    Premium digital systems built for clarity, conversion, and scale.
+  </div>
+  <div class="meta">
+    Founded 2022 • Based in Cheshire
+  </div>
+</header>
+
+<section>
+  <h2>What We Do</h2>
+
+  <div class="grid">
+    <div class="card">
+      We design conversion-first websites engineered to increase engagement and customer action.
+    </div>
+    <div class="card">
+      Every system is built like a product — structured, scalable, and visually intentional.
+    </div>
   </div>
 </section>
 
-<!-- STORY 2 -->
-<section class="story">
-  <div class="inner">
-    <h2>Founded 2022</h2>
-    <p>Built in Cheshire, focused on high-end web systems that convert visitors into customers.</p>
-  </div>
-</section>
+<section>
+  <h2>Pricing</h2>
 
-<!-- STORY 3 -->
-<section class="story">
-  <div class="inner">
-    <h2>What We Build</h2>
-    <p>We design structured, conversion-focused websites engineered like SaaS products.</p>
-  </div>
-</section>
+  <div class="pricing">
 
-<!-- STORY 4 PRICING -->
-<section class="story">
-  <div class="inner">
-    <h2>Pricing</h2>
-
-    <div class="pricing">
-
-      <div class="plan">
-        Starter <div class="price">£99</div>
+    <div class="plan" onclick="toggle(this)">
+      <h3>Starter</h3>
+      <div class="price">£99</div>
+      <div class="details">
+        Clean landing page built for clarity and speed.<br>
+        Fully responsive layout.<br>
+        Glass UI system.<br>
+        Basic contact integration.
       </div>
+    </div>
 
-      <div class="plan">
-        Growth <div class="price">£299</div>
+    <div class="plan" onclick="toggle(this)">
+      <h3>Growth</h3>
+      <div class="price">£299</div>
+      <div class="details">
+        Multi-page structure.<br>
+        SEO optimisation.<br>
+        Conversion-focused UX design.<br>
+        Scalable UI system.
       </div>
+    </div>
 
-      <div class="plan">
-        Elite <div class="price">£599</div>
+    <div class="plan" onclick="toggle(this)">
+      <h3>Elite</h3>
+      <div class="price">£599</div>
+      <div class="details">
+        Full custom website system.<br>
+        Advanced animations.<br>
+        Brand identity integration.<br>
+        Priority support.
       </div>
-
     </div>
 
   </div>
 </section>
 
-<!-- STORY 5 LEAD CAPTURE -->
-<section class="story">
-  <div class="inner">
-    <h2>Get Started</h2>
+<section>
+  <h2>FAQ</h2>
 
-    <form>
-      <input type="text" placeholder="Your Name">
-      <input type="email" placeholder="Email Address">
-      <textarea placeholder="Tell us about your project"></textarea>
-      <button type="submit">Request Build</button>
-    </form>
+  <div class="faq">
+
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      How long does delivery take?
+      <div class="answer">Most projects take 3–7 days depending on complexity.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      Do I get revisions?
+      <div class="answer">Yes — revision rounds are included based on your package.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      Is SEO included?
+      <div class="answer">SEO setup is included in Growth and Elite plans.</div>
+    </div>
 
   </div>
 </section>
 
+<footer>
+  © 2026 Zentro Web Studio
+</footer>
+
+</main>
+
 <script>
 
-/* =========================
-   APPLE-STYLE SCROLL SYSTEM
-========================= */
+/* scroll storytelling */
+const sections = document.querySelectorAll('section');
 
-const sections = document.querySelectorAll('.story');
-
-function revealOnScroll() {
-  const scrollPos = window.scrollY + window.innerHeight / 2;
-
-  sections.forEach(sec => {
-    const offset = sec.offsetTop;
-
-    if (scrollPos > offset) {
-      sec.classList.add('active');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
     }
   });
+},{ threshold: 0.2 });
+
+sections.forEach(s => observer.observe(s));
+
+/* mobile tap expand FIX */
+function toggle(el){
+  el.classList.toggle('active');
 }
 
-window.addEventListener('scroll', revealOnScroll);
+function toggleFAQ(el){
+  el.classList.toggle('active');
+}
 
 </script>
 
