@@ -17,79 +17,27 @@ body {
   overflow-x: hidden;
 }
 
-/* glow background */
+/* glow */
 body::before, body::after {
   content: "";
   position: fixed;
-  width: 500px;
-  height: 500px;
-  filter: blur(130px);
+  width: 520px;
+  height: 520px;
+  filter: blur(140px);
   opacity: 0.4;
   z-index: 0;
   animation: float 14s ease-in-out infinite;
 }
 
-body::before {
-  background: #3b82f6;
-  left: -200px;
-  top: 20%;
-}
-
-body::after {
-  background: #a855f7;
-  right: -200px;
-  bottom: 10%;
-}
+body::before { background: #3b82f6; left: -200px; top: 20%; }
+body::after { background: #a855f7; right: -200px; bottom: 10%; }
 
 @keyframes float {
   0%,100% { transform: translateY(0px); }
   50% { transform: translateY(-60px); }
 }
 
-/* HERO */
-header {
-  text-align: center;
-  padding: 130px 20px 80px;
-  position: relative;
-  z-index: 2;
-}
-
-h1 {
-  font-size: 86px;
-  margin: 0;
-  letter-spacing: -3px;
-  font-weight: 700;
-  background: linear-gradient(90deg, #60a5fa, #a78bfa, #22d3ee);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.sub {
-  font-size: 20px;
-  color: #cbd5e1;
-  margin-top: 12px;
-}
-
-/* BUTTON */
-.btn {
-  display: inline-block;
-  margin-top: 25px;
-  padding: 14px 28px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  backdrop-filter: blur(20px);
-  color: white;
-  text-decoration: none;
-  transition: 0.4s ease;
-}
-
-.btn:hover {
-  transform: translateY(-6px) scale(1.05);
-  border-color: #60a5fa;
-}
-
-/* SECTIONS */
+/* layout */
 section {
   max-width: 1000px;
   margin: auto;
@@ -98,86 +46,89 @@ section {
   z-index: 2;
 }
 
-h2 {
-  font-size: 42px;
-  margin-bottom: 25px;
-  letter-spacing: -1px;
+h1 {
+  font-size: 86px;
+  margin: 0;
+  text-align: center;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa, #22d3ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* GRID */
+.sub {
+  text-align: center;
+  color: #cbd5e1;
+  margin-top: 10px;
+}
+
+/* cards */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
+  gap: 16px;
 }
 
-/* SMALLER GLASS BOXES */
 .card {
   background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.12);
   backdrop-filter: blur(22px);
   border-radius: 16px;
   padding: 18px;
-  font-size: 14px;
-  line-height: 1.5;
-  transition: 0.4s ease;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
-.card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(96,165,250,0.6);
-}
-
-/* ===== PRICING ===== */
+/* pricing */
 .pricing {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
 }
 
 .plan {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.12);
   backdrop-filter: blur(25px);
-  border-radius: 18px;
-  padding: 22px;
-  cursor: pointer;
-  transition: 0.5s ease;
+  border-radius: 16px;
+  padding: 18px;
   overflow: hidden;
-  max-height: 160px;
+  max-height: 140px;
+  transition: 0.6s ease;
+  cursor: pointer;
 }
 
-/* hover expand */
 .plan:hover {
-  max-height: 320px;
+  max-height: 360px;
   transform: translateY(-10px);
   border-color: #60a5fa;
 }
 
-/* price */
 .price {
-  font-size: 36px;
+  font-size: 34px;
   font-weight: 700;
   color: #60a5fa;
-  margin: 8px 0;
 }
 
-/* hidden details */
 .details {
   opacity: 0;
   transform: translateY(10px);
-  transition: 0.4s ease;
-  font-size: 13px;
+  transition: 0.5s ease;
+  font-size: 12px;
   color: #cbd5e1;
 }
 
-/* reveal on hover */
 .plan:hover .details {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* FOOTER */
+/* review stars */
+.stars {
+  color: #fbbf24;
+  font-size: 14px;
+}
+
+/* footer */
 footer {
   text-align: center;
   padding: 50px;
@@ -191,18 +142,23 @@ footer {
 
 <header>
   <h1>ZENTRO</h1>
-  <div class="sub">Premium websites engineered for growth</div>
-  <a class="btn" href="#pricing">View Pricing</a>
+  <div class="sub">Premium web design that converts attention into customers</div>
 </header>
+
+<section>
+  <h2>Founded & Brand Story</h2>
+  <div class="card">
+    Zentro is a modern web design studio focused on building high-performance business websites.<br><br>
+    <b>Established 2022</b> — built to help small businesses look and perform like premium brands online.
+  </div>
+</section>
 
 <section>
   <h2>What We Do</h2>
   <div class="grid">
-
-    <div class="card">High-converting websites built for modern businesses.</div>
-    <div class="card">Clean, glass UI systems designed for trust & clarity.</div>
-    <div class="card">Fast, mobile-first builds optimised for growth.</div>
-
+    <div class="card">High-converting business websites</div>
+    <div class="card">Clean glass UI design systems</div>
+    <div class="card">Fast, mobile-first builds</div>
   </div>
 </section>
 
@@ -215,10 +171,10 @@ footer {
       <h3>Starter</h3>
       <div class="price">£99</div>
       <div class="details">
-        • Single page website<br>
-        • Glass UI design<br>
-        • Mobile responsive<br>
-        • Contact section<br>
+        Single page website<br>
+        Glass UI system<br>
+        Mobile responsive<br>
+        Contact section
       </div>
     </div>
 
@@ -226,10 +182,10 @@ footer {
       <h3>Growth</h3>
       <div class="price">£299</div>
       <div class="details">
-        • Up to 5 pages<br>
-        • Premium UI system<br>
-        • SEO optimisation<br>
-        • Conversion layout<br>
+        Up to 5 pages<br>
+        SEO setup<br>
+        Conversion layout<br>
+        Premium UI system
       </div>
     </div>
 
@@ -237,10 +193,10 @@ footer {
       <h3>Elite</h3>
       <div class="price">£599</div>
       <div class="details">
-        • Full custom build<br>
-        • Advanced animations<br>
-        • Brand system<br>
-        • Priority support<br>
+        Full custom build<br>
+        Advanced animations<br>
+        Brand identity system<br>
+        Priority support
       </div>
     </div>
 
@@ -248,19 +204,33 @@ footer {
 </section>
 
 <section>
-  <h2>Built for Results</h2>
+  <h2>Client Feedback</h2>
+
   <div class="grid">
-    <div class="card">Designed to increase trust instantly.</div>
-    <div class="card">Optimised for conversions and sales.</div>
-    <div class="card">Built to make businesses look premium.</div>
+
+    <div class="card">
+      <div class="stars">★★★★★</div>
+      “Our website instantly looked more premium and brought in more enquiries.”
+    </div>
+
+    <div class="card">
+      <div class="stars">★★★★★</div>
+      “Clean design, fast loading, and actually converts visitors.”
+    </div>
+
+    <div class="card">
+      <div class="stars">★★★★★</div>
+      “Feels like a high-end agency site — exactly what we needed.”
+    </div>
+
   </div>
 </section>
 
 <section>
   <h2>Contact</h2>
   <div class="card">
-    <b style="font-size:18px;">hello@zentro.uk</b><br><br>
-    We build websites that actually grow businesses.
+    <b>hello@zentro.uk</b><br><br>
+    We build websites that turn brands into premium businesses.
   </div>
 </section>
 
