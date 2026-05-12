@@ -5,55 +5,71 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zentro | Premium Web Studio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 /* ========== GLOBAL ========== */
 body {
   margin: 0;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Sora', sans-serif;
   color: white;
   overflow-x: hidden;
   background: radial-gradient(circle at top, #0b1220, #020617);
 }
 
-/* animated ambient glow background */
+/* animated glow */
 body::before, body::after {
   content: "";
   position: fixed;
-  width: 500px;
-  height: 500px;
-  filter: blur(120px);
-  z-index: 0;
+  width: 600px;
+  height: 600px;
+  filter: blur(140px);
   opacity: 0.5;
-  animation: float 12s ease-in-out infinite;
+  z-index: 0;
+  animation: float 14s ease-in-out infinite;
 }
 
 body::before {
   background: #3b82f6;
-  left: -150px;
+  left: -200px;
   top: 20%;
 }
 
 body::after {
   background: #a855f7;
-  right: -150px;
+  right: -200px;
   bottom: 10%;
-  animation-delay: 3s;
+  animation-delay: 4s;
 }
 
 @keyframes float {
-  0%,100% { transform: translateY(0px); }
-  50% { transform: translateY(-50px); }
+  0%,100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-60px) scale(1.1); }
 }
 
-/* ========== HERO ========== */
+/* ========== HEADER ========== */
 header {
   text-align: center;
   padding: 140px 20px 100px;
   position: relative;
   z-index: 2;
+}
+
+/* LOGO */
+.logo {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 20px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #3b82f6, #a855f7);
+  box-shadow: 0 0 40px rgba(59,130,246,0.4);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
 }
 
 h1 {
@@ -72,7 +88,7 @@ h1 {
   margin-top: 15px;
 }
 
-/* CTA */
+/* BUTTON */
 .btn {
   display: inline-block;
   margin-top: 30px;
@@ -81,16 +97,14 @@ h1 {
   text-decoration: none;
   font-weight: 600;
   color: white;
-
   background: rgba(255,255,255,0.06);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255,255,255,0.15);
-
   transition: 0.4s ease;
 }
 
 .btn:hover {
-  transform: translateY(-6px) scale(1.05);
+  transform: translateY(-8px) scale(1.06);
   border-color: #60a5fa;
 }
 
@@ -98,80 +112,76 @@ h1 {
 section {
   max-width: 1100px;
   margin: auto;
-  padding: 90px 20px;
+  padding: 110px 20px;
   position: relative;
   z-index: 2;
 }
 
 h2 {
-  font-size: 46px;
-  margin-bottom: 25px;
+  font-size: 52px;
+  margin-bottom: 30px;
   letter-spacing: -1px;
 }
 
-/* text */
+/* TEXT */
 .bigtext {
-  font-size: 20px;
+  font-size: 22px;
   color: #cbd5e1;
-  line-height: 1.8;
+  line-height: 1.9;
 }
 
-/* ========== GLASS CARDS ========== */
+/* ========== CARDS (BIGGER + MORE DEPTH) ========== */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
 }
 
 .card {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.12);
-  backdrop-filter: blur(22px);
-  border-radius: 18px;
-  padding: 24px;
+  backdrop-filter: blur(25px);
+  border-radius: 20px;
+  padding: 32px;
+  min-height: 160px;
 
-  transition: 0.5s ease;
-  transform: translateY(20px);
+  transition: 0.6s ease;
+  transform: translateY(30px);
   opacity: 0;
 }
 
 .card:hover {
-  transform: translateY(-10px) scale(1.02);
-  border-color: rgba(96,165,250,0.6);
+  transform: translateY(-14px) scale(1.03);
+  border-color: rgba(96,165,250,0.7);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
 }
 
-/* reveal animation */
-.show {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
-
-/* ========== PRICING (HERO FEATURE) ========== */
+/* PRICING BIGGER */
 .pricing {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 30px;
 }
 
 .plan {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.12);
-  backdrop-filter: blur(25px);
-  border-radius: 20px;
-  padding: 30px;
-
-  transition: 0.5s ease;
+  backdrop-filter: blur(30px);
+  border-radius: 22px;
+  padding: 36px;
+  transition: 0.6s ease;
 }
 
 .plan:hover {
-  transform: translateY(-12px);
+  transform: translateY(-16px) scale(1.02);
   border-color: #60a5fa;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
 }
 
 .price {
-  font-size: 42px;
+  font-size: 46px;
   font-weight: 700;
-  margin: 10px 0;
+  margin: 12px 0;
   color: #60a5fa;
 }
 
@@ -180,31 +190,37 @@ ul {
   padding-left: 18px;
 }
 
-/* ========== FOOTER ========== */
+/* REVEAL */
+.show {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* FOOTER */
 footer {
   text-align: center;
-  padding: 50px;
+  padding: 60px;
   color: #94a3b8;
   position: relative;
   z-index: 2;
 }
-
 </style>
 </head>
 
 <body>
 
 <header>
+  <div class="logo"></div>
+
   <h1>ZENTRO</h1>
-  <div class="sub">Premium web design that converts attention into revenue</div>
+  <div class="sub">Premium websites engineered for growth & conversion</div>
   <a class="btn" href="#pricing">View Pricing</a>
 </header>
 
 <section>
-  <h2>Luxury Web Experience</h2>
+  <h2>Luxury Digital Presence</h2>
   <div class="bigtext">
-    We design websites with one goal: <b>make your business look premium and generate clients.</b><br><br>
-    Every detail is engineered for clarity, trust, and conversion.
+    We don’t build websites — we build high-end digital experiences that make businesses look premium instantly.
   </div>
 </section>
 
@@ -212,9 +228,9 @@ footer {
   <h2>What We Deliver</h2>
   <div class="grid">
 
-    <div class="card">Elite modern UI systems with glass aesthetic design.</div>
-    <div class="card">High-speed performance and conversion optimisation.</div>
-    <div class="card">Mobile-first layouts built for all devices.</div>
+    <div class="card">Elite glass UI systems with modern depth and motion.</div>
+    <div class="card">Performance-optimised builds for speed and conversion.</div>
+    <div class="card">Mobile-first layouts with premium visual hierarchy.</div>
 
   </div>
 </section>
@@ -223,9 +239,9 @@ footer {
   <h2>Design Philosophy</h2>
   <div class="grid">
 
-    <div class="card">Minimal. Clean. High contrast hierarchy.</div>
-    <div class="card">Focus on clarity and user attention flow.</div>
-    <div class="card">Built to feel expensive, not complicated.</div>
+    <div class="card">Minimal, sharp, and intentional spacing.</div>
+    <div class="card">Focus on attention flow and user psychology.</div>
+    <div class="card">Luxury feel without visual noise.</div>
 
   </div>
 </section>
@@ -239,10 +255,10 @@ footer {
       <h3>Starter</h3>
       <div class="price">£99</div>
       <ul>
-        <li>Single page website</li>
+        <li>Single page site</li>
         <li>Glass UI design</li>
         <li>Mobile responsive</li>
-        <li>Email contact section</li>
+        <li>Contact section</li>
       </ul>
     </div>
 
@@ -252,8 +268,8 @@ footer {
       <ul>
         <li>Up to 5 pages</li>
         <li>Premium UI system</li>
-        <li>SEO optimisation</li>
-        <li>Advanced layout structure</li>
+        <li>SEO setup</li>
+        <li>Conversion layout</li>
       </ul>
     </div>
 
@@ -261,9 +277,9 @@ footer {
       <h3>Elite</h3>
       <div class="price">£599</div>
       <ul>
-        <li>Full custom website</li>
+        <li>Full custom build</li>
         <li>Advanced animations</li>
-        <li>Conversion optimisation</li>
+        <li>Brand system</li>
         <li>Priority support</li>
       </ul>
     </div>
@@ -272,7 +288,7 @@ footer {
 </section>
 
 <section>
-  <h2>Built for Growth</h2>
+  <h2>Built for Results</h2>
   <div class="bigtext">
     Every website is designed to increase trust, improve conversions, and elevate brand perception instantly.
   </div>
